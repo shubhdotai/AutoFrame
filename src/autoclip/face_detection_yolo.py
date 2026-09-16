@@ -1,21 +1,15 @@
 """
 YOLOv8 face + person detection (iitolstykh/YOLO-Face-Person-Detector).
 
-Streams the input video, samples 1-in-N frames, runs batched YOLO inference on
-the chosen device (MPS by default on Apple Silicon), and returns per-frame
-lists of face and person detections.
-
-Output schema mirrors `face_detection.detect_faces_in_video` so the tracking
-pipeline can consume `detections_per_frame` unchanged. Person detections are
-returned alongside via `persons_per_frame` for visualization purposes.
+Exposes the same detector interface as the Apple Vision backend so
+`scan.scan_video` can drive either one from a single decode pass. Person boxes
+are returned alongside faces and are used by the reframer as a fallback subject
+when no face is visible.
 """
 
 import os
-import time
 
-import cv2
 import numpy as np
-
 
 # Class IDs in the iitolstykh/YOLO-Face-Person-Detector checkpoint.
 _CLS_PERSON = 0
@@ -34,139 +28,105 @@ def _resolve_device(requested):
     return requested
 
 
-def _load_model(weights_path, device):
-    from ultralytics import YOLO
-    model = YOLO(weights_path)
-    # Warm up on the chosen device. Ultralytics moves the model lazily on the
-    # first predict call, so we trigger it here to surface any device errors
-    # before the main loop.
-    dummy = np.zeros((640, 640, 3), dtype=np.uint8)
-    model.predict(dummy, device=device, verbose=False, imgsz=640)
-    return model
+class YoloFacePersonDetector:
+    """Batched YOLO detector. Returns (faces, persons)."""
 
+    name = "yolo_face_person"
+    provides_persons = True
 
-def detect_faces_in_video(
-    video_path,
-    weights_path,
-    sample_every_n=3,
-    batch_size=16,
-    device="mps",
-    conf=0.4,
-    iou=0.7,
-    imgsz=640,
-    progress=True,
-):
-    """
-    Returns:
-        {
-          "fps": float, "width": int, "height": int,
-          "total_frames": int, "sample_every_n": int,
-          "detections_per_frame": list[list[face_dict]],
-          "persons_per_frame":   list[list[person_dict]],
-        }
-    Each face/person dict: {"frame": int, "bbox": [x1,y1,x2,y2], "conf": float}
-    """
-    if not os.path.exists(weights_path):
-        raise FileNotFoundError(f"missing YOLO weights: {weights_path}")
+    def __init__(
+        self,
+        width,
+        height,
+        weights_path,
+        device="mps",
+        conf=0.4,
+        iou=0.7,
+        imgsz=640,
+        batch_size=16,
+        min_confidence=0.0,
+        min_face_size=0,
+        progress=True,
+    ):
+        if not os.path.exists(weights_path):
+            raise FileNotFoundError(f"missing YOLO weights: {weights_path}")
+        from ultralytics import YOLO
 
-    device = _resolve_device(device)
+        self.width = int(width)
+        self.height = int(height)
+        self.device = _resolve_device(device)
+        self.conf = float(conf)
+        self.iou = float(iou)
+        self.imgsz = int(imgsz)
+        self.batch_size = int(batch_size)
+        self.min_confidence = float(min_confidence)
+        self.min_face_size = float(min_face_size)
 
-    cap = cv2.VideoCapture(video_path)
-    fps = cap.get(cv2.CAP_PROP_FPS)
-    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-
-    if progress:
-        dur_min = total_frames / fps / 60 if fps else 0
-        print(f"[face_detection_yolo] {width}x{height} @ {fps:.2f} fps | "
-              f"{total_frames} frames ({dur_min:.1f} min)")
-        print(f"[face_detection_yolo] sampling every {sample_every_n} frame(s) | "
-              f"batch={batch_size} | device={device} | imgsz={imgsz} | "
-              f"conf={conf} | iou={iou}")
-
-    print(f"[face_detection_yolo] loading {os.path.basename(weights_path)}")
-    model = _load_model(weights_path, device)
-
-    detections_per_frame = [[] for _ in range(total_frames)]
-    persons_per_frame = [[] for _ in range(total_frames)]
-
-    t_start = time.perf_counter()
-    frame_idx = 0
-
-    pending_frames = []
-    pending_indices = []
-
-    def flush(batch_frames, batch_indices):
-        if not batch_frames:
-            return
-        # Ultralytics accepts a list of np.ndarrays (BGR HxWxC) and returns one
-        # Result per input.
-        results = model.predict(
-            batch_frames,
-            device=device,
-            imgsz=imgsz,
-            conf=conf,
-            iou=iou,
-            verbose=False,
+        if progress:
+            print(f"[face_detection_yolo] loading {os.path.basename(weights_path)}")
+        self.model = YOLO(weights_path)
+        # Ultralytics moves the model lazily on the first predict call; warm it
+        # up here so device errors surface before the main loop.
+        self.model.predict(
+            np.zeros((self.imgsz, self.imgsz, 3), dtype=np.uint8),
+            device=self.device, verbose=False, imgsz=self.imgsz,
         )
-        for gi, res in zip(batch_indices, results):
+
+    def detect(self, frames, indices):
+        results = self.model.predict(
+            frames, device=self.device, imgsz=self.imgsz,
+            conf=self.conf, iou=self.iou, verbose=False,
+        )
+        faces_out, persons_out = [], []
+        for gi, res in zip(indices, results):
+            faces, persons = [], []
             boxes = res.boxes
-            if boxes is None or len(boxes) == 0:
-                continue
-            xyxy = boxes.xyxy.cpu().numpy()
-            cls = boxes.cls.cpu().numpy().astype(int)
-            confs = boxes.conf.cpu().numpy()
-            for (x1, y1, x2, y2), c, cf in zip(xyxy, cls, confs):
-                rec = {
-                    "frame": int(gi),
-                    "bbox": [int(x1), int(y1), int(x2), int(y2)],
-                    "conf": float(cf),
-                }
-                if c == _CLS_FACE:
-                    detections_per_frame[gi].append(rec)
-                elif c == _CLS_PERSON:
-                    persons_per_frame[gi].append(rec)
+            if boxes is not None and len(boxes):
+                xyxy = boxes.xyxy.cpu().numpy()
+                cls = boxes.cls.cpu().numpy().astype(int)
+                confs = boxes.conf.cpu().numpy()
+                for (x1, y1, x2, y2), c, cf in zip(xyxy, cls, confs):
+                    rec = {
+                        "frame": int(gi),
+                        "bbox": [int(x1), int(y1), int(x2), int(y2)],
+                        "conf": float(cf),
+                    }
+                    if c == _CLS_FACE:
+                        if cf < self.min_confidence:
+                            continue
+                        if max(x2 - x1, y2 - y1) < self.min_face_size:
+                            continue
+                        faces.append(rec)
+                    elif c == _CLS_PERSON:
+                        persons.append(rec)
+            faces_out.append(faces)
+            persons_out.append(persons)
+        return faces_out, persons_out
 
-    while True:
-        ret, frame = cap.read()
-        if not ret:
-            break
-        gi = frame_idx
-        frame_idx += 1
-        if gi % sample_every_n != 0:
-            continue
-        pending_frames.append(frame)
-        pending_indices.append(gi)
-        if len(pending_frames) >= batch_size:
-            flush(pending_frames, pending_indices)
-            pending_frames.clear()
-            pending_indices.clear()
-            if progress:
-                elapsed = time.perf_counter() - t_start
-                pct = frame_idx / max(total_frames, 1) * 100
-                fps_a = frame_idx / max(elapsed, 1e-6)
-                eta_min = (total_frames - frame_idx) / max(fps_a, 1e-6) / 60
-                print(f"  {frame_idx}/{total_frames} ({pct:.1f}%) | "
-                      f"{fps_a:.1f} fps | ETA {eta_min:.1f} min")
+    def close(self):
+        pass
 
-    # Drain
-    flush(pending_frames, pending_indices)
-    cap.release()
 
-    elapsed = time.perf_counter() - t_start
-    if progress:
-        n_faces = sum(len(d) for d in detections_per_frame)
-        n_persons = sum(len(d) for d in persons_per_frame)
-        print(f"[face_detection_yolo] done in {elapsed/60:.1f} min | "
-              f"{n_faces} face detections | {n_persons} person detections")
+def build_detector(width, height, **kwargs):
+    return YoloFacePersonDetector(width, height, **kwargs)
 
-    return {
-        "fps": fps,
-        "width": width,
-        "height": height,
-        "total_frames": total_frames,
-        "sample_every_n": sample_every_n,
-        "detections_per_frame": detections_per_frame,
-        "persons_per_frame": persons_per_frame,
-    }
+
+def detect_faces_in_video(video_path, weights_path, sample_every_n=3, batch_size=16,
+                          device="mps", conf=0.4, iou=0.7, imgsz=640, progress=True,
+                          **kwargs):
+    """Backwards-compatible single-backend entry point; prefer `scan.scan_video`."""
+    from .scan import scan_video
+    return scan_video(
+        video_path,
+        backend="yolo_face_person",
+        sample_every_n=sample_every_n,
+        batch_size=batch_size,
+        progress=progress,
+        detect_scenes=False,
+        weights_path=weights_path,
+        device=device,
+        conf=conf,
+        iou=iou,
+        imgsz=imgsz,
+        **kwargs,
+    )

@@ -15,7 +15,6 @@ The original upstream checkout revision was
 | `AutoClip/optimized_asd/model/` | Rewritten encoders: different normalization, stride, pooling and BN epsilon | Replaced with upstream architecture; identical parameter names are insufficient |
 | `AutoClip/optimized_asd/transcript_data.py` | A fixed transcript and clip selection for one video | Excluded; the new renderer processes the whole video |
 | `AutoClip/optimized_asd/shortform_auto.py` | Python ASR/LLM orchestration experiment | Excluded per reframing-only scope |
-| `AutoClip/optimized_asd/swift_asd/` | Native Vision/Core ML ASD, renderer, GUI, MLX transcription/selection | Excluded per reframing-only scope; original remains intact |
 | `AutoClip/optimized_asd/optimized_python/` | YOLO/ONNX benchmarks, face identity and tracking experiments | ByteTrack pipeline and required source retained in `research/tracking`; benchmarks stay original |
 | `AutoClip/optimized_asd/tmps/`, `AutoClip/tmp/` | ASR/VLM/LLM scratch scripts, smoke clips, private environment file | Excluded; no environment-file values copied |
 | `AutoClip/old/` | Earlier speaker/diarization/cut/depth experiments and vendored depth repos | Excluded from runtime; all model artifacts inventoried |
@@ -36,14 +35,12 @@ The original upstream checkout revision was
 - Detector mini-batches do not allocate padding for the whole video.
 - Reuse original source audio for final rendering; ASD audio is only model input.
 - Exact 9:16 even pixel dimensions for H.264 without upscaling.
-- Clear distinction between PyTorch/MPS, Core ML and MLX.
-- Legacy Core ML packages are isolated because architecture parity is unverified.
 
 ## Audit coverage and limits
 
 `source-inventory.json` indexes source/document paths, line counts, and Python
 top-level definitions across the original workspace, including vendored depth
-code and the landing page. `model-inventory.json` records all 29 discovered
+code and the landing page. `model-inventory.json` records the retained
 model artifacts, byte sizes and SHA-256 checksums. Generated dependency/build
 folders were excluded. The pipeline and model call paths were inspected;
 this is not a line-by-line correctness certification of every vendored repo.

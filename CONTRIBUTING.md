@@ -16,4 +16,5 @@ inference. Benchmark long videos with duration, face-track count, resolution,
 hardware, peak memory and elapsed time; separate preprocessing from inference.
 
 CI runs model-free tests on Linux and macOS. Model smoke tests run locally
-when `models/pretrain_AVA.model` is available. Optional Core ML export is separate from Python CI; see `docs/VALIDATION.md` for actual local results.
+when `models/pretrain_AVA.model` is available. Install FFmpeg to run the media
+tests. See [validation results](docs/VALIDATION.md) for actual local results.

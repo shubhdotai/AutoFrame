@@ -1,143 +1,169 @@
 """
 Apple Vision face detection (VNDetectFaceRectanglesRequest).
 
-Streams the input video in chunks, samples 1-in-N frames, runs detection in a
-thread pool, and returns a per-frame list of face dicts (empty for non-sampled
-frames). Drop-in replacement for the S3FD `inference_video` step in the
-original Columbia_test.py.
+Frames reach Vision as a wrapped CVPixelBuffer rather than an encoded image.
+The previous implementation PNG-encoded every sampled frame, which cost more
+than the detection itself: measured on 1080x1080 frames, PNG round-trip was
+66.5 ms/frame versus 7.0 ms/frame for a 720 px pixel buffer, with the same
+faces found. Detection also runs on a downscaled copy, because Vision returns
+normalized coordinates and those map back to full resolution for free.
 """
 
-import time
 import threading
 from concurrent.futures import ThreadPoolExecutor
 
 import cv2
+import numpy as np
 
-# pyobjc imports are deferred so this module is importable on non-macOS dev
-# machines. The actual detection call below requires them.
 _thread_local = threading.local()
+
+# Long-edge resolution fed to Vision. Face recall was identical at 720 and
+# 1080 on the validation clip; below ~540 small background faces start to drop.
+DEFAULT_DETECT_SIZE = 720
 
 
 def _get_request():
-    import Vision  # noqa: F401  (deferred macOS dependency)
+    import Vision  # deferred macOS dependency
     if not hasattr(_thread_local, "request"):
         _thread_local.request = Vision.VNDetectFaceRectanglesRequest.alloc().init()
     return _thread_local.request
 
 
-def _detect_one_frame(frame_idx, frame, width, height):
-    import Vision  # noqa: F401
-    from Foundation import NSData
+def _quartz():
+    try:
+        import Quartz
+        if hasattr(Quartz, "CVPixelBufferCreateWithBytes"):
+            return Quartz
+    except ImportError:
+        pass
+    return None
 
-    success, buf = cv2.imencode(".png", frame)
-    if not success:
+
+def _handler_for(frame):
+    """
+    Wrap a BGR frame for Vision, preferring a zero-copy pixel buffer.
+
+    CVPixelBufferCreateWithBytes does not copy, so the BGRA array must outlive
+    the request; it is returned alongside the handler and held by the caller.
+    """
+    import Vision
+    quartz = _quartz()
+    if quartz is not None:
+        bgra = np.ascontiguousarray(cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA))
+        height, width = bgra.shape[:2]
+        status, pixel_buffer = quartz.CVPixelBufferCreateWithBytes(
+            None, width, height, quartz.kCVPixelFormatType_32BGRA,
+            bgra, width * 4, None, None, None, None,
+        )
+        if status == 0 and pixel_buffer is not None:
+            handler = Vision.VNImageRequestHandler.alloc().initWithCVPixelBuffer_options_(
+                pixel_buffer, None
+            )
+            return handler, bgra
+
+    # Fallback for pyobjc builds without the CoreVideo bindings. JPEG rather
+    # than PNG: same detections, a fraction of the encode cost.
+    from Foundation import NSData
+    ok, buf = cv2.imencode(".jpg", frame, [cv2.IMWRITE_JPEG_QUALITY, 90])
+    if not ok:
         raise RuntimeError("Could not encode frame for Apple Vision")
     data = buf.tobytes()
     ns_data = NSData.dataWithBytes_length_(data, len(data))
-
-    request = _get_request()
-    handler = Vision.VNImageRequestHandler.alloc().initWithData_options_(ns_data, None)
-    ok, error = handler.performRequests_error_([request], None)
-    if not ok:
-        raise RuntimeError(f"Apple Vision face detection failed: {error}")
-
-    faces = []
-    for obs in (request.results() or []):
-        bb = obs.boundingBox()
-        x = bb.origin.x * width
-        y_bottom = bb.origin.y * height
-        bw = bb.size.width * width
-        bh = bb.size.height * height
-        y_top = height - y_bottom - bh
-        x1, y1 = int(x), int(y_top)
-        x2, y2 = int(x + bw), int(y_top + bh)
-        faces.append({
-            "frame": frame_idx,
-            "bbox": [x1, y1, x2, y2],
-            "conf": float(obs.confidence()),
-        })
-    return frame_idx, faces
+    return Vision.VNImageRequestHandler.alloc().initWithData_options_(ns_data, None), ns_data
 
 
-def detect_faces_in_video(
-    video_path,
-    sample_every_n=3,
-    num_workers=8,
-    chunk_size=32,
-    progress=True,
-):
-    """
-    Returns a dict:
-        {
-          "fps": float,
-          "width": int, "height": int,
-          "total_frames": int,
-          "sample_every_n": int,
-          "detections_per_frame": list[list[face_dict]]   # length == total_frames
-        }
-    Frames not sampled have an empty list.
-    """
-    cap = cv2.VideoCapture(video_path)
-    fps = cap.get(cv2.CAP_PROP_FPS)
-    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+class VisionFaceDetector:
+    """Thread-pooled Apple Vision detector. Returns (faces, persons=None)."""
 
-    if progress:
-        dur_min = total_frames / fps / 60 if fps else 0
-        print(f"[face_detection] {width}x{height} @ {fps:.2f} fps | "
-              f"{total_frames} frames ({dur_min:.1f} min)")
-        print(f"[face_detection] sampling every {sample_every_n} frame(s) | "
-              f"workers={num_workers}")
+    name = "apple_vision"
+    provides_persons = False
 
-    detections_per_frame = [[] for _ in range(total_frames)]
-    t_start = time.perf_counter()
-    frame_idx = 0
+    def __init__(
+        self,
+        width,
+        height,
+        num_workers=8,
+        detect_size=DEFAULT_DETECT_SIZE,
+        min_confidence=0.0,
+        min_face_size=0,
+        batch_size=32,
+    ):
+        self.width = int(width)
+        self.height = int(height)
+        self.batch_size = int(batch_size)
+        self.min_confidence = float(min_confidence)
+        self.min_face_size = float(min_face_size)
 
-    with ThreadPoolExecutor(max_workers=num_workers) as executor:
-        while True:
-            chunk_frames = []
-            chunk_start = frame_idx
-            for _ in range(chunk_size):
-                ret, frame = cap.read()
-                if not ret:
-                    break
-                chunk_frames.append(frame)
-                frame_idx += 1
-            if not chunk_frames:
-                break
+        longest = max(self.width, self.height)
+        if detect_size and 0 < detect_size < longest:
+            self.scale = detect_size / float(longest)
+            self.detect_size = (
+                max(1, int(round(self.width * self.scale))),
+                max(1, int(round(self.height * self.scale))),
+            )
+        else:
+            self.scale = 1.0
+            self.detect_size = (self.width, self.height)
 
-            futures = []
-            for i, f in enumerate(chunk_frames):
-                gi = chunk_start + i
-                if gi % sample_every_n == 0:
-                    futures.append(executor.submit(_detect_one_frame, gi, f, width, height))
+        self._pool = ThreadPoolExecutor(max_workers=int(num_workers))
 
-            for fut in futures:
-                idx, faces = fut.result()
-                detections_per_frame[idx] = faces
+    def _detect_one(self, frame_idx, frame):
+        if self.detect_size != (frame.shape[1], frame.shape[0]):
+            frame = cv2.resize(frame, self.detect_size, interpolation=cv2.INTER_AREA)
 
-            if progress:
-                elapsed = time.perf_counter() - t_start
-                pct = frame_idx / total_frames * 100
-                fps_a = frame_idx / max(elapsed, 1e-6)
-                eta_min = (total_frames - frame_idx) / max(fps_a, 1e-6) / 60
-                print(f"  {frame_idx}/{total_frames} ({pct:.1f}%) | "
-                      f"{fps_a:.1f} fps | ETA {eta_min:.1f} min")
+        handler, _keepalive = _handler_for(frame)
+        request = _get_request()
+        ok, error = handler.performRequests_error_([request], None)
+        if not ok:
+            raise RuntimeError(f"Apple Vision face detection failed: {error}")
 
-    cap.release()
-    elapsed = time.perf_counter() - t_start
-    if progress:
-        n_sampled = len(range(0, frame_idx, sample_every_n))
-        n_faces = sum(len(d) for d in detections_per_frame)
-        print(f"[face_detection] done in {elapsed/60:.1f} min | "
-              f"{n_sampled} sampled frames | {n_faces} face detections")
+        faces = []
+        for obs in (request.results() or []):
+            confidence = float(obs.confidence())
+            if confidence < self.min_confidence:
+                continue
+            # Vision reports normalized, bottom-left-origin boxes, so they map
+            # straight onto full-resolution pixels regardless of detect_size.
+            box = obs.boundingBox()
+            x = box.origin.x * self.width
+            box_w = box.size.width * self.width
+            box_h = box.size.height * self.height
+            y_top = self.height - (box.origin.y * self.height) - box_h
+            if max(box_w, box_h) < self.min_face_size:
+                continue
+            faces.append({
+                "frame": int(frame_idx),
+                "bbox": [int(x), int(y_top), int(x + box_w), int(y_top + box_h)],
+                "conf": confidence,
+            })
+        return faces
 
-    return {
-        "fps": fps,
-        "width": width,
-        "height": height,
-        "total_frames": total_frames,
-        "sample_every_n": sample_every_n,
-        "detections_per_frame": detections_per_frame,
-    }
+    def detect(self, frames, indices):
+        futures = [
+            self._pool.submit(self._detect_one, idx, frame)
+            for idx, frame in zip(indices, frames)
+        ]
+        return [f.result() for f in futures], None
+
+    def close(self):
+        self._pool.shutdown(wait=True)
+
+
+def build_detector(width, height, **kwargs):
+    return VisionFaceDetector(width, height, **kwargs)
+
+
+def detect_faces_in_video(video_path, sample_every_n=3, num_workers=8,
+                          chunk_size=32, progress=True, **kwargs):
+    """Backwards-compatible single-backend entry point; prefer `scan.scan_video`."""
+    from .scan import scan_video
+    return scan_video(
+        video_path,
+        backend="apple_vision",
+        sample_every_n=sample_every_n,
+        num_workers=num_workers,
+        batch_size=chunk_size,
+        progress=progress,
+        detect_scenes=False,
+        **kwargs,
+    )

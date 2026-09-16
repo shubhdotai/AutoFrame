@@ -1,9 +1,15 @@
-"""Scene detection helpers."""
+"""Scene detection helpers.
+
+The main pipeline detects scenes inside `scan.scan_video`, sharing its decode
+pass with face detection. This module keeps a standalone entry point for tools
+and tests that only want cuts.
+"""
 
 import os
 
 
-def detect_scenes(video_path, threshold=27.0, min_scene_len=15, progress=True):
+def detect_scenes(video_path, threshold=27.0, min_scene_len=15, progress=True,
+                  mode="content"):
     """
     Detect scene boundaries with PySceneDetect.
 
@@ -12,7 +18,7 @@ def detect_scenes(video_path, threshold=27.0, min_scene_len=15, progress=True):
     """
     try:
         from scenedetect import SceneManager, open_video
-        from scenedetect.detectors import ContentDetector
+        from scenedetect.detectors import AdaptiveDetector, ContentDetector
     except ImportError as exc:
         raise RuntimeError(
             "PySceneDetect is required for scene-aware tracking. Install it with "
@@ -21,9 +27,14 @@ def detect_scenes(video_path, threshold=27.0, min_scene_len=15, progress=True):
 
     video = open_video(video_path)
     scene_manager = SceneManager()
-    scene_manager.add_detector(
-        ContentDetector(threshold=threshold, min_scene_len=min_scene_len)
-    )
+    if mode == "adaptive":
+        scene_manager.add_detector(
+            AdaptiveDetector(adaptive_threshold=3.0, min_scene_len=min_scene_len)
+        )
+    else:
+        scene_manager.add_detector(
+            ContentDetector(threshold=threshold, min_scene_len=min_scene_len)
+        )
     scene_manager.detect_scenes(video=video, show_progress=progress)
     scene_list = scene_manager.get_scene_list()
 
@@ -60,13 +71,13 @@ def detect_scenes(video_path, threshold=27.0, min_scene_len=15, progress=True):
     return scenes, cuts
 
 
-def scene_json(video_path, scenes, cuts, threshold, min_scene_len):
+def scene_json(video_path, scenes, cuts, threshold, min_scene_len, mode="content"):
     return {
         "source": os.path.basename(video_path),
-        "detector": "PySceneDetect ContentDetector",
+        "detector": f"PySceneDetect {'AdaptiveDetector' if mode == 'adaptive' else 'ContentDetector'}",
+        "mode": mode,
         "threshold": float(threshold),
         "min_scene_len": int(min_scene_len),
         "cuts": [int(c) for c in cuts],
         "scenes": scenes,
     }
-

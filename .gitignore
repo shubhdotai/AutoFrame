@@ -2,11 +2,11 @@ __pycache__/
 *.py[cod]
 .venv/
 .pytest_cache/
+.ruff_cache/
 *.egg-info/
 build/
 dist/
 .DS_Store
-*/.DS_Store
 .env
 .env.*
 !.env.example
@@ -20,9 +20,6 @@ out/
 *.pth
 *.onnx
 *.safetensors
-*.mlpackage/
-*.mlmodelc/
-models/coreml/
-models/legacy_coreml/
-native/.build/
-node_modules/
+
+# Published README demo
+!docs/assets/demo.mp4

@@ -13,14 +13,13 @@ Renders at 25 fps using the temporary preprocessed MP4. Bbox coordinates are
 computed at 25 fps so this keeps everything aligned.
 """
 
-import os
 
 import cv2
 import numpy as np
-from scipy import signal
 from tqdm import tqdm
 
-from .media import mux_audio
+from .media import FrameSink
+from .shortform import _smooth_bboxes, _smooth_scores
 
 
 # BGR colors (OpenCV)
@@ -32,26 +31,21 @@ _COLOR_PERSON = (220, 140, 0)      # orange-blue (BGR)
 
 
 def _smooth(arr, window):
-    arr = np.asarray(arr, dtype=np.float32)
-    n = arr.shape[0]
-    if n == 0 or window <= 1:
-        return arr
-    half = window // 2
-    return np.array([
-        float(np.mean(arr[max(i - half, 0): min(i + half + 1, n)]))
-        for i in range(n)
-    ], dtype=np.float32)
+    """Shared with the reframer so diagnostics show what the plan actually used."""
+    return _smooth_scores(arr, window)
 
 
 def _smooth_bbox(bboxes, kernel=13):
-    """Median-filter each bbox coord over time to reduce visible jitter."""
-    bboxes = np.asarray(bboxes, dtype=np.float32)
-    if bboxes.shape[0] < kernel:
-        return bboxes
-    out = np.empty_like(bboxes)
-    for j in range(4):
-        out[:, j] = signal.medfilt(bboxes[:, j], kernel_size=kernel)
-    return out
+    return _smooth_bboxes(bboxes, kernel)
+
+
+def _downscale(frame, max_width):
+    """Diagnostics do not need full resolution; halving the width quarters the encode."""
+    if not max_width or frame.shape[1] <= max_width:
+        return frame
+    scale = max_width / float(frame.shape[1])
+    size = (int(frame.shape[1] * scale) // 2 * 2, int(frame.shape[0] * scale) // 2 * 2)
+    return cv2.resize(frame, size, interpolation=cv2.INTER_AREA)
 
 
 def render_active_speaker_video(
@@ -65,6 +59,7 @@ def render_active_speaker_video(
     bbox_smooth_kernel=13,
     fps=25,
     show_label=True,
+    max_width=960,
 ):
     """
     input_video_path : 25-fps preprocessed video
@@ -100,18 +95,20 @@ def render_active_speaker_video(
                     "track": tidx,
                     "bbox": bboxes[i],
                     "score": float(sm[i]),
-                    "speaking": float(sm[i]) >= threshold,
+                    # NaN marks a track the pipeline chose not to score.
+                    "speaking": bool(np.isfinite(sm[i]) and sm[i] >= threshold),
                 })
 
     # ---- Stream encode ----
-    tmp_path = out_path + ".tmp.mp4"
-    fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-    writer = cv2.VideoWriter(tmp_path, fourcc, fps, (width, height))
-    if not writer.isOpened():
-        cap.release()
-        raise RuntimeError(f"could not open writer for {tmp_path}")
+    probe = _downscale(np.zeros((height, width, 3), np.uint8), max_width)
+    # Declare the duration so short audio is padded rather than truncating the
+    # overlay: a diagnostic that is a frame out of step with the analysis is
+    # worse than useless.
+    sink = FrameSink(out_path, probe.shape[1], probe.shape[0], fps,
+                     audio_path=audio_path, audio_duration=n_frames / float(fps),
+                     quality="analysis")
 
-    for fidx in tqdm(range(n_frames), desc="render", unit="f"):
+    for fidx in tqdm(range(n_frames), desc="render", unit="f", disable=None):
         ret, frame = cap.read()
         if not ret:
             break
@@ -127,7 +124,9 @@ def render_active_speaker_video(
             cv2.rectangle(frame, (x1, y1), (x2, y2), color, thickness)
 
             if show_label:
-                label = f"#{face['track']}  {face['score']:+.2f}"
+                score_text = (f"{face['score']:+.2f}"
+                              if np.isfinite(face["score"]) else "n/s")
+                label = f"#{face['track']}  {score_text}"
                 if speaking:
                     label = "SPEAKING  " + label
                 (tw, th), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
@@ -135,22 +134,10 @@ def render_active_speaker_video(
                 cv2.rectangle(frame, (x1, ly - th - 6), (x1 + tw + 8, ly + 4), color, -1)
                 cv2.putText(frame, label, (x1 + 4, ly), cv2.FONT_HERSHEY_SIMPLEX,
                             0.6, _COLOR_TEXT, 2)
-        writer.write(frame)
+        sink.write(_downscale(frame, max_width))
 
     cap.release()
-    writer.release()
-
-    try:
-        mux_audio(tmp_path, audio_path, out_path)
-    except Exception:
-        # Fall back: just rename the silent video
-        if os.path.exists(out_path):
-            os.remove(out_path)
-        os.rename(tmp_path, out_path)
-    else:
-        if os.path.exists(tmp_path):
-            os.remove(tmp_path)
-
+    sink.close()
     return out_path
 
 
@@ -163,6 +150,7 @@ def render_raw_detections_video(
     fps=25,
     label_prefix="face",
     show_score=True,
+    max_width=960,
 ):
     """
     Draws every raw face/person detection box on top of the source video.
@@ -180,12 +168,13 @@ def render_raw_detections_video(
 
     has_persons = persons_per_frame is not None
 
-    tmp_path = out_path + ".tmp.mp4"
-    fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-    writer = cv2.VideoWriter(tmp_path, fourcc, fps, (width, height))
-    if not writer.isOpened():
-        cap.release()
-        raise RuntimeError(f"could not open writer for {tmp_path}")
+    probe = _downscale(np.zeros((height, width, 3), np.uint8), max_width)
+    # Declare the duration so short audio is padded rather than truncating the
+    # overlay: a diagnostic that is a frame out of step with the analysis is
+    # worse than useless.
+    sink = FrameSink(out_path, probe.shape[1], probe.shape[0], fps,
+                     audio_path=audio_path, audio_duration=n_frames / float(fps),
+                     quality="analysis")
 
     # Cache so non-sampled frames keep showing the most recent boxes (otherwise
     # the overlay would flicker on/off every other frame).
@@ -205,7 +194,7 @@ def render_raw_detections_video(
             cv2.putText(frame, label, (x1 + 3, ly), cv2.FONT_HERSHEY_SIMPLEX,
                         0.5, _COLOR_TEXT, 1)
 
-    for fidx in tqdm(range(n_frames), desc="render-raw", unit="f"):
+    for fidx in tqdm(range(n_frames), desc="render-raw", unit="f", disable=None):
         ret, frame = cap.read()
         if not ret:
             break
@@ -230,19 +219,8 @@ def render_raw_detections_video(
             lab = f"{label_prefix} {det['conf']:.2f}" if show_score else label_prefix
             _draw_box(frame, x1, y1, x2, y2, _COLOR_FACE, lab, 2)
 
-        writer.write(frame)
+        sink.write(_downscale(frame, max_width))
 
     cap.release()
-    writer.release()
-
-    try:
-        mux_audio(tmp_path, audio_path, out_path)
-    except Exception:
-        if os.path.exists(out_path):
-            os.remove(out_path)
-        os.rename(tmp_path, out_path)
-    else:
-        if os.path.exists(tmp_path):
-            os.remove(tmp_path)
-
+    sink.close()
     return out_path

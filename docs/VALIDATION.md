@@ -28,7 +28,7 @@ a temporary environment, not into the original project.
   checked from a temporary directory outside the source checkout. Distribution
   contents exclude model weights and private media; the source distribution
   includes the downloader and model manifest.
-- All 29 original model artifacts are size/hash-inventoried. ONNX/Core ML
+- The retained original model artifacts are size/hash-inventoried. ONNX
   graphs and tensor checkpoints were inspected. Duplicate weights are recorded
   in `MODELS.md`. Inspection does not establish numerical equivalence.
 
@@ -46,7 +46,7 @@ representative material. The short smoke test is not an ASD accuracy benchmark.
 
 Linux, Windows, CUDA and YOLO inference were not runtime-tested. The optional
 YOLO downloader is hash-pinned but was not fetched in this verification.
-Core ML conversion/parity was not run. Legacy native/MLX/LLM workflows are not
+Legacy native/MLX/LLM workflows are not
 included in this reframing-only distribution. Research ByteTrack/FaceLiVT code
 is preserved separately and was not promoted into the main pipeline.
 
@@ -65,3 +65,14 @@ regression and packaging results above are the actual evidence.
 | python-speech-features | 0.6 |
 | pyobjc-framework-Vision | 12.2.2 |
 | pytest | 9.1.1 |
+
+
+## Simplified checkpoint release
+
+After restoring the single PyTorch inference path, all 51 pipeline tests passed
+with normal macOS video-encoder access. Three additional downloader tests passed
+for checksum rejection/temporary-file cleanup, preserving mismatched existing
+files, and selecting upstream versus `shubhdotai/autoclip` URLs. Both local
+release checkpoints matched the manifest hashes. Model-card YAML and CLI
+download syntax were checked. No files were uploaded to Hugging Face, and
+downloads from the user's mirror have not been verified before publication.
