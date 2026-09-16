@@ -10,12 +10,9 @@ stage in the normal reframing path.
 
 ## Demo
 
-The first 15 seconds of a synchronized comparison: **Original video** on the
-left, **Reframed** on the right. This preview is muted.
-
 [![AutoClip side-by-side demo](docs/assets/demo.gif)](docs/assets/demo.mp4)
 
-[Watch or download the 15-second MP4](docs/assets/demo.mp4).
+A 15 mins video takes around 2-3 mins for reframing.
 
 ## Quick start — Apple Silicon Mac
 
