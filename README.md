@@ -1,7 +1,7 @@
-# AutoClip
+# AutoFrame
 
 Turn a 16:9 landscape video into a vertical video that follows the active speaker.
-AutoClip detects faces, tracks them within each scene, scores who is speaking
+AutoFrame detects faces, tracks them within each scene, scores who is speaking
 with LR-ASD, and holds a stable crop around the selected person.
 
 The output keeps the full video timeline and original source audio (re-encoded
@@ -10,7 +10,7 @@ stage in the normal reframing path.
 
 ## Demo
 
-[![AutoClip side-by-side demo](docs/assets/demo.gif)](docs/assets/demo.mp4)
+[![AutoFrame side-by-side demo](docs/assets/demo.gif)](docs/assets/demo.mp4)
 
 A 15 mins video takes around 2-3 mins for reframing.
 
@@ -25,8 +25,8 @@ source .venv/bin/activate
 python -m pip install -e '.[mac]'
 python scripts/download_models.py --source upstream
 
-autoclip doctor
-autoclip run /path/to/video.mp4 --output out/my-video
+AutoFrame doctor
+AutoFrame run /path/to/video.mp4 --output out/my-video
 ```
 
 That writes one file, `out/my-video/vertical.mp4`, and nothing else. Add
@@ -45,8 +45,8 @@ render the result at the source's own frame rate.
 `--detector vision`, which is the default, and it needs **no face weight file**
 and no download: only the 3.3 MB LR-ASD speaking-detection checkpoint is
 fetched by `scripts/download_models.py`, and that download is checksum-verified.
-`autoclip doctor` confirms both that Vision is importable and that the fast
-CoreVideo pixel-buffer path is available; without the latter AutoClip still
+`AutoFrame doctor` confirms both that Vision is importable and that the fast
+CoreVideo pixel-buffer path is available; without the latter AutoFrame still
 works, but face detection runs several times slower.
 
 Install `python -m pip install -e '.[mac,yolo]'` and pass `--detector yolo`
@@ -64,7 +64,7 @@ or provide explicit model paths.
 The two files are `models/pretrain_AVA.model` (ASD) and
 `models/yolov8x_person_face.pt` (optional face/person detector).
 The commands above download from the original sources and work before your
-mirror is published. Once both files are uploaded to `shubhdotai/autoclip`:
+mirror is published. Once both files are uploaded to `shubhdotai/AutoFrame`:
 
 ```sh
 python scripts/download_models.py                 # ASD only
@@ -84,8 +84,8 @@ Use the optional YOLO face-and-person backend instead of Apple Vision:
 ```sh
 python -m pip install -e '.[yolo]'
 python scripts/download_models.py --source upstream --include-yolo
-autoclip doctor --detector yolo
-autoclip run /path/to/video.mp4 --detector yolo --output out/my-video
+AutoFrame doctor --detector yolo
+AutoFrame run /path/to/video.mp4 --detector yolo --output out/my-video
 ```
 
 Install FFmpeg using your platform's package manager and ensure it is on PATH.
@@ -97,7 +97,7 @@ The optional YOLO dependency and weights have separate terms; see
 
 ## What a run leaves behind
 
-`autoclip run` reframes the entire input as a vertical video, preserving its
+`AutoFrame run` reframes the entire input as a vertical video, preserving its
 duration. By default it writes **only `vertical.mp4`**. The 25 fps working copy and
 the 16 kHz audio go to a scratch directory that is deleted on the way out, the
 analysis is passed to the renderer in memory, and no JSON is produced.
@@ -108,31 +108,31 @@ profile on the console. Use it when you want to inspect what the pipeline
 decided. It uses the same reframing settings as a normal run.
 
 ```sh
-autoclip run /path/to/video.mp4 --output out/my-video            # vertical.mp4 only
-autoclip run /path/to/video.mp4 --output out/my-video --verbose  # + full analysis
+AutoFrame run /path/to/video.mp4 --output out/my-video            # vertical.mp4 only
+AutoFrame run /path/to/video.mp4 --output out/my-video --verbose  # + full analysis
 ```
 
 ## Analyze once, render again
 
 ```sh
-autoclip analyze /path/to/video.mp4 --output out/analysis
-autoclip render /path/to/video.mp4 --output out/analysis
+AutoFrame analyze /path/to/video.mp4 --output out/analysis
+AutoFrame render /path/to/video.mp4 --output out/analysis
 ```
 
 These two exist to produce and to consume artifacts, so they always write them;
 `--verbose` does not apply. Keep `_work/` until you finish rendering: it
 contains the normalized video and audio. `--debug-video` adds separate diagnostic face/speaker videos; the final vertical
 video has no overlays.
-`autoclip --help` and `autoclip run --help` list supported options.
+`AutoFrame --help` and `AutoFrame run --help` list supported options.
 
 ## Project map
 
 | Path | Purpose |
 | --- | --- |
-| `src/autoclip/` | Supported Python CLI and processing pipeline |
-| `src/autoclip/scan.py` | Fused scene + face detection over one decode pass |
-| `src/autoclip/gating.py` | Decides which tracks need active-speaker scoring |
-| `src/autoclip/model/` | Original LR-ASD architecture and checkpoint names |
+| `src/AutoFrame/` | Supported Python CLI and processing pipeline |
+| `src/AutoFrame/scan.py` | Fused scene + face detection over one decode pass |
+| `src/AutoFrame/gating.py` | Decides which tracks need active-speaker scoring |
+| `src/AutoFrame/model/` | Original LR-ASD architecture and checkpoint names |
 | `models/` | Local weights, download manifest; binaries excluded from Git |
 | `scripts/` | Checksum-verified downloads for the two checkpoints |
 | `research/tracking/` | Separate ByteTrack + face identity experiment |
