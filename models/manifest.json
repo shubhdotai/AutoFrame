@@ -1,0 +1,14 @@
+{
+  "pretrain_AVA.model": {
+    "url": "https://raw.githubusercontent.com/Junhua-Liao/LR-ASD/1b6dcd2d8fc2895683de6508ec6294ec47d388ca/weight/pretrain_AVA.model",
+    "sha256": "85e6c77fc981595234790d1e128ebb60352d37726b2445e0ef8891e2512fe9e3"
+  },
+  "finetuning_TalkSet.model": {
+    "url": "https://raw.githubusercontent.com/Junhua-Liao/LR-ASD/1b6dcd2d8fc2895683de6508ec6294ec47d388ca/weight/finetuning_TalkSet.model",
+    "sha256": "6b4ef53694e874e96cf630198dc479c78aebb3993bbf166aee3d926dfe7d9342"
+  },
+  "yolov8x_person_face.pt": {
+    "url": "https://huggingface.co/iitolstykh/YOLO-Face-Person-Detector/resolve/main/yolov8x_person_face.pt",
+    "sha256": "2620f45609a65f909eb876bd7401308b5a8f3843ad5a03cb7416066a3e492989"
+  }
+}

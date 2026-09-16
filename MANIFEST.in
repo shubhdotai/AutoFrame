@@ -1,0 +1,6 @@
+include LICENSE THIRD_PARTY_NOTICES.md CONTRIBUTING.md
+recursive-include docs *.md *.json
+recursive-include scripts *.py
+include models/README.md models/manifest.json
+recursive-include tests *.py
+global-exclude *.pyc

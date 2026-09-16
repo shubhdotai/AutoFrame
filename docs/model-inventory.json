@@ -1,0 +1,797 @@
+[
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/checkpoints/video_depth_anything_vits.pth",
+    "bytes": 116440756,
+    "sha256": "13379300b739e659f076a59d52e9801bd8d38c541a7e71f73bbca4dcfb013609",
+    "inspection": {
+      "format": "PyTorch tensors",
+      "tensor_count": 351,
+      "elements": 29080193,
+      "first_keys": [
+        "pretrained.cls_token",
+        "pretrained.pos_embed",
+        "pretrained.mask_token",
+        "pretrained.patch_embed.proj.weight",
+        "pretrained.patch_embed.proj.bias",
+        "pretrained.blocks.0.norm1.weight",
+        "pretrained.blocks.0.norm1.bias",
+        "pretrained.blocks.0.attn.qkv.weight"
+      ]
+    }
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/checkpoints/video_depth_anything_vits.pth",
+    "bytes": 116440756,
+    "sha256": "13379300b739e659f076a59d52e9801bd8d38c541a7e71f73bbca4dcfb013609",
+    "inspection": {
+      "format": "PyTorch tensors",
+      "tensor_count": 351,
+      "elements": 29080193,
+      "first_keys": [
+        "pretrained.cls_token",
+        "pretrained.pos_embed",
+        "pretrained.mask_token",
+        "pretrained.patch_embed.proj.weight",
+        "pretrained.patch_embed.proj.bias",
+        "pretrained.blocks.0.norm1.weight",
+        "pretrained.blocks.0.norm1.bias",
+        "pretrained.blocks.0.attn.qkv.weight"
+      ]
+    }
+  },
+  {
+    "path": "AutoClip/old/swift_depth/DepthVideo/models/DepthAnythingV2SmallF16.mlpackage/Data/com.apple.CoreML/model.mlmodel",
+    "bytes": 399433,
+    "sha256": "44ac97a3efcfd52113183fb2862ff59cd0368e9ec2e30a90a54980dd11407042",
+    "inspection": {
+      "format": "Core ML",
+      "specification_version": 8,
+      "type": "mlProgram",
+      "inputs": [
+        {
+          "name": "image",
+          "shape": [],
+          "dtype": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "depth",
+          "shape": [],
+          "dtype": 0
+        }
+      ]
+    }
+  },
+  {
+    "path": "AutoClip/old/swift_depth/DepthVideo/models/DepthAnythingV2SmallF16.mlpackage/Data/com.apple.CoreML/weights/weight.bin",
+    "bytes": 49419072,
+    "sha256": "fa60d9b6a155734f59029ebb882fd54e549bfaee3539c1a9cbd2cbbab64a0fed"
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/facelivtv2-s.pt",
+    "bytes": 18967907,
+    "sha256": "ec659a5f84476e39a34b2f034f9022a094936d0e8b5429199e2a0db6d686ad6f",
+    "inspection": {
+      "format": "PyTorch tensors",
+      "tensor_count": 628,
+      "elements": 4692031,
+      "first_keys": [
+        "patch_embedds.0.stem.0.0.conv.weight",
+        "patch_embedds.0.stem.0.0.conv.bias",
+        "patch_embedds.0.stem.0.0.repconv.weight",
+        "patch_embedds.0.stem.0.0.repconv.bias",
+        "patch_embedds.0.stem.0.0.bn.weight",
+        "patch_embedds.0.stem.0.0.bn.bias",
+        "patch_embedds.0.stem.0.0.bn.running_mean",
+        "patch_embedds.0.stem.0.0.bn.running_var"
+      ]
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/sym_shape_infer_temp.onnx",
+    "bytes": 147131,
+    "sha256": "642315b20e0a9f8d52125e0f20ecbccfb1cf7689a52bba6478dde4b61ee6dabe",
+    "inspection": {
+      "format": "ONNX",
+      "inputs": [
+        {
+          "name": "images",
+          "dtype": 1,
+          "shape": [
+            "batch",
+            3,
+            "height",
+            "width"
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output0",
+          "dtype": 1,
+          "shape": [
+            "batch",
+            6,
+            "anchors"
+          ]
+        }
+      ],
+      "operators": {
+        "Conv": 104,
+        "Sigmoid": 98,
+        "Mul": 101,
+        "Split": 8,
+        "Add": 26,
+        "Concat": 32,
+        "MaxPool": 3,
+        "Resize": 2,
+        "Shape": 10,
+        "Gather": 9,
+        "Unsqueeze": 13,
+        "Cast": 6,
+        "Range": 6,
+        "ConstantOfShape": 3,
+        "Reshape": 17,
+        "Expand": 6,
+        "Transpose": 3,
+        "Softmax": 1,
+        "Slice": 2,
+        "Sub": 2,
+        "Div": 1
+      },
+      "initializers": 228
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/yolov8n.pt",
+    "bytes": 6549796,
+    "sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+    "inspection": {
+      "format": "PyTorch object archive",
+      "global_references": [
+        "__builtin__ set",
+        "collections OrderedDict",
+        "torch FloatStorage",
+        "torch HalfStorage",
+        "torch LongStorage",
+        "torch Size",
+        "torch._utils _rebuild_parameter",
+        "torch._utils _rebuild_tensor_v2",
+        "torch.nn.modules.activation SiLU",
+        "torch.nn.modules.batchnorm BatchNorm2d",
+        "torch.nn.modules.container ModuleList",
+        "torch.nn.modules.container Sequential",
+        "torch.nn.modules.conv Conv2d",
+        "torch.nn.modules.pooling MaxPool2d",
+        "torch.nn.modules.upsampling Upsample",
+        "ultralytics.nn.modules.block Bottleneck",
+        "ultralytics.nn.modules.block C2f",
+        "ultralytics.nn.modules.block DFL",
+        "ultralytics.nn.modules.block SPPF",
+        "ultralytics.nn.modules.conv Concat",
+        "ultralytics.nn.modules.conv Conv",
+        "ultralytics.nn.modules.head Detect",
+        "ultralytics.nn.tasks DetectionModel"
+      ],
+      "note": "Statically inspected pickle globals; object not deserialized"
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/yolov8x_person_face.onnx",
+    "bytes": 273441030,
+    "sha256": "1901c6bd4a09b44bb81e303b170e7f1e155fd930a0bafdde2702204e310ab6fc",
+    "inspection": {
+      "format": "ONNX",
+      "inputs": [
+        {
+          "name": "images",
+          "dtype": 1,
+          "shape": [
+            "batch",
+            3,
+            "height",
+            "width"
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output0",
+          "dtype": 1,
+          "shape": [
+            "batch",
+            6,
+            "anchors"
+          ]
+        }
+      ],
+      "operators": {
+        "Conv": 104,
+        "Sigmoid": 98,
+        "Mul": 101,
+        "Split": 8,
+        "Add": 26,
+        "Concat": 32,
+        "MaxPool": 3,
+        "Resize": 2,
+        "Shape": 10,
+        "Gather": 9,
+        "Unsqueeze": 13,
+        "Cast": 6,
+        "Range": 6,
+        "ConstantOfShape": 3,
+        "Reshape": 17,
+        "Expand": 6,
+        "Transpose": 3,
+        "Softmax": 1,
+        "Slice": 2,
+        "Sub": 2,
+        "Div": 1
+      },
+      "initializers": 228
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/yolov8x_person_face.pt",
+    "bytes": 136716488,
+    "sha256": "2620f45609a65f909eb876bd7401308b5a8f3843ad5a03cb7416066a3e492989",
+    "inspection": {
+      "format": "PyTorch object archive",
+      "global_references": [
+        "__builtin__ dict",
+        "__builtin__ set",
+        "collections OrderedDict",
+        "collections defaultdict",
+        "omegaconf.base ContainerMetadata",
+        "omegaconf.base Metadata",
+        "omegaconf.dictconfig DictConfig",
+        "omegaconf.nodes AnyNode",
+        "torch FloatStorage",
+        "torch HalfStorage",
+        "torch LongStorage",
+        "torch Size",
+        "torch._utils _rebuild_parameter",
+        "torch._utils _rebuild_tensor_v2",
+        "torch.nn.modules.activation SiLU",
+        "torch.nn.modules.batchnorm BatchNorm2d",
+        "torch.nn.modules.container ModuleList",
+        "torch.nn.modules.container Sequential",
+        "torch.nn.modules.conv Conv2d",
+        "torch.nn.modules.pooling MaxPool2d",
+        "torch.nn.modules.upsampling Upsample",
+        "typing Any",
+        "ultralytics.nn.modules Bottleneck",
+        "ultralytics.nn.modules C2f",
+        "ultralytics.nn.modules Concat",
+        "ultralytics.nn.modules Conv",
+        "ultralytics.nn.modules DFL",
+        "ultralytics.nn.modules Detect",
+        "ultralytics.nn.modules SPPF",
+        "ultralytics.nn.tasks DetectionModel"
+      ],
+      "note": "Statically inspected pickle globals; object not deserialized"
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/yolov8x_person_face_fp16_b8_static.onnx",
+    "bytes": 136433677,
+    "sha256": "be0ab4c747f315b2035bce38dae9544f810a0304dc2f299ee914358365347be8",
+    "inspection": {
+      "format": "ONNX",
+      "inputs": [
+        {
+          "name": "images",
+          "dtype": 1,
+          "shape": [
+            8,
+            3,
+            640,
+            640
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output0",
+          "dtype": 1,
+          "shape": [
+            8,
+            6,
+            8400
+          ]
+        }
+      ],
+      "operators": {
+        "Conv": 104,
+        "Sigmoid": 98,
+        "Mul": 100,
+        "Constant": 23,
+        "Split": 8,
+        "Add": 21,
+        "Concat": 17,
+        "MaxPool": 3,
+        "Resize": 2,
+        "Reshape": 8,
+        "Transpose": 1,
+        "Softmax": 1,
+        "Shape": 1,
+        "Gather": 1,
+        "Div": 2,
+        "Slice": 2,
+        "Sub": 2,
+        "Cast": 4
+      },
+      "initializers": 207
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/yolov8x_person_face_fp16_static.onnx",
+    "bytes": 136433677,
+    "sha256": "86b3a66de0245f40d7df49c5488d280b51f51743946577f62ab4226f531c66d7",
+    "inspection": {
+      "format": "ONNX",
+      "inputs": [
+        {
+          "name": "images",
+          "dtype": 1,
+          "shape": [
+            1,
+            3,
+            640,
+            640
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output0",
+          "dtype": 1,
+          "shape": [
+            1,
+            6,
+            8400
+          ]
+        }
+      ],
+      "operators": {
+        "Conv": 104,
+        "Sigmoid": 98,
+        "Mul": 100,
+        "Constant": 23,
+        "Split": 8,
+        "Add": 21,
+        "Concat": 17,
+        "MaxPool": 3,
+        "Resize": 2,
+        "Reshape": 8,
+        "Transpose": 1,
+        "Softmax": 1,
+        "Shape": 1,
+        "Gather": 1,
+        "Div": 2,
+        "Slice": 2,
+        "Sub": 2,
+        "Cast": 4
+      },
+      "initializers": 207
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/yolov8x_person_face_fp32_b8_static.onnx",
+    "bytes": 272743896,
+    "sha256": "ac5202418208f2ef2d130a30e4f4d34b63cf9be335490f3bd88a59eafe76385a",
+    "inspection": {
+      "format": "ONNX",
+      "inputs": [
+        {
+          "name": "images",
+          "dtype": 1,
+          "shape": [
+            8,
+            3,
+            640,
+            640
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output0",
+          "dtype": 1,
+          "shape": [
+            8,
+            6,
+            8400
+          ]
+        }
+      ],
+      "operators": {
+        "Conv": 104,
+        "Sigmoid": 98,
+        "Mul": 100,
+        "Constant": 23,
+        "Split": 8,
+        "Add": 21,
+        "Concat": 17,
+        "MaxPool": 3,
+        "Resize": 2,
+        "Reshape": 8,
+        "Transpose": 1,
+        "Softmax": 1,
+        "Shape": 1,
+        "Gather": 1,
+        "Div": 2,
+        "Slice": 2,
+        "Sub": 2
+      },
+      "initializers": 207
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/yolov8x_person_face_uint8.onnx",
+    "bytes": 69303169,
+    "sha256": "022f9987bdb1d788ecd490b4599b50fecc1b317f15a89a85d6e2d57f18f876b1",
+    "inspection": {
+      "format": "ONNX",
+      "inputs": [
+        {
+          "name": "images",
+          "dtype": 1,
+          "shape": [
+            "batch",
+            3,
+            "height",
+            "width"
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output0",
+          "dtype": 1,
+          "shape": [
+            "batch",
+            6,
+            "anchors"
+          ]
+        }
+      ],
+      "operators": {
+        "DynamicQuantizeLinear": 99,
+        "Reshape": 120,
+        "Mul": 309,
+        "ConvInteger": 104,
+        "Cast": 110,
+        "Add": 129,
+        "Sigmoid": 98,
+        "Split": 8,
+        "Concat": 32,
+        "MaxPool": 3,
+        "Resize": 2,
+        "Shape": 10,
+        "Gather": 9,
+        "Unsqueeze": 13,
+        "Range": 6,
+        "ConstantOfShape": 3,
+        "Expand": 6,
+        "Transpose": 3,
+        "Softmax": 1,
+        "Slice": 2,
+        "Sub": 2,
+        "Div": 1
+      },
+      "initializers": 539
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/weight/finetuning_TalkSet.model",
+    "bytes": 3426337,
+    "sha256": "6b4ef53694e874e96cf630198dc479c78aebb3993bbf166aee3d926dfe7d9342",
+    "inspection": {
+      "format": "PyTorch tensors",
+      "tensor_count": 168,
+      "elements": 841086,
+      "first_keys": [
+        "model.visualEncoder.block1.s_1.weight",
+        "model.visualEncoder.block1.s_norm_1.weight",
+        "model.visualEncoder.block1.s_norm_1.bias",
+        "model.visualEncoder.block1.s_norm_1.running_mean",
+        "model.visualEncoder.block1.s_norm_1.running_var",
+        "model.visualEncoder.block1.s_norm_1.num_batches_tracked",
+        "model.visualEncoder.block1.s_2.weight",
+        "model.visualEncoder.block1.s_norm_2.weight"
+      ]
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/weight/pretrain_AVA.model",
+    "bytes": 3426337,
+    "sha256": "85e6c77fc981595234790d1e128ebb60352d37726b2445e0ef8891e2512fe9e3",
+    "inspection": {
+      "format": "PyTorch tensors",
+      "tensor_count": 168,
+      "elements": 841086,
+      "first_keys": [
+        "model.visualEncoder.block1.s_1.weight",
+        "model.visualEncoder.block1.s_norm_1.weight",
+        "model.visualEncoder.block1.s_norm_1.bias",
+        "model.visualEncoder.block1.s_norm_1.running_mean",
+        "model.visualEncoder.block1.s_norm_1.running_var",
+        "model.visualEncoder.block1.s_norm_1.num_batches_tracked",
+        "model.visualEncoder.block1.s_2.weight",
+        "model.visualEncoder.block1.s_norm_2.weight"
+      ]
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/weight/audio_encoder.mlpackage/Data/com.apple.CoreML/model.mlmodel",
+    "bytes": 20293,
+    "sha256": "898ae8a3b8d38f9b161b1215419cbea3295bc085ec5674759dca591ca33ad52a",
+    "inspection": {
+      "format": "Core ML",
+      "specification_version": 8,
+      "type": "mlProgram",
+      "inputs": [
+        {
+          "name": "a",
+          "shape": [
+            1,
+            400,
+            13
+          ],
+          "dtype": 65568
+        }
+      ],
+      "outputs": [
+        {
+          "name": "var_196",
+          "shape": [
+            1,
+            100,
+            128
+          ],
+          "dtype": 65552
+        }
+      ]
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/weight/audio_encoder.mlpackage/Data/com.apple.CoreML/weights/weight.bin",
+    "bytes": 463168,
+    "sha256": "63405ae4601015a2a89a575db85f6e1a3550c38407742998fcaf0b8db843a5a0"
+  },
+  {
+    "path": "AutoClip/optimized_asd/weight/detector_head_d2.mlpackage/Data/com.apple.CoreML/model.mlmodel",
+    "bytes": 38819,
+    "sha256": "886ad33de0599ae0e3bc9af75af1f62f9cc77da7dd56c85dde9532f18f26588c",
+    "inspection": {
+      "format": "Core ML",
+      "specification_version": 8,
+      "type": "mlProgram",
+      "inputs": [
+        {
+          "name": "audio_embed",
+          "shape": [
+            1,
+            50,
+            128
+          ],
+          "dtype": 65568
+        },
+        {
+          "name": "visual_embed",
+          "shape": [
+            1,
+            50,
+            128
+          ],
+          "dtype": 65568
+        }
+      ],
+      "outputs": [
+        {
+          "name": "var_97",
+          "shape": [],
+          "dtype": 65552
+        }
+      ]
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/weight/detector_head_d2.mlpackage/Data/com.apple.CoreML/weights/weight.bin",
+    "bytes": 414336,
+    "sha256": "77a82a6dbebe2126dab45cfe2f4d3723ce24bdc8f632fd4ced0596cbbadde6f2"
+  },
+  {
+    "path": "AutoClip/optimized_asd/weight/detector_head_d4.mlpackage/Data/com.apple.CoreML/model.mlmodel",
+    "bytes": 38819,
+    "sha256": "e9cab750ce00fa058cee52948679dee8639b40445e1338d68c796bd6bc1de999",
+    "inspection": {
+      "format": "Core ML",
+      "specification_version": 8,
+      "type": "mlProgram",
+      "inputs": [
+        {
+          "name": "audio_embed",
+          "shape": [
+            1,
+            100,
+            128
+          ],
+          "dtype": 65568
+        },
+        {
+          "name": "visual_embed",
+          "shape": [
+            1,
+            100,
+            128
+          ],
+          "dtype": 65568
+        }
+      ],
+      "outputs": [
+        {
+          "name": "var_97",
+          "shape": [],
+          "dtype": 65552
+        }
+      ]
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/weight/detector_head_d4.mlpackage/Data/com.apple.CoreML/weights/weight.bin",
+    "bytes": 414336,
+    "sha256": "77a82a6dbebe2126dab45cfe2f4d3723ce24bdc8f632fd4ced0596cbbadde6f2"
+  },
+  {
+    "path": "AutoClip/optimized_asd/weight/detector_head_d6.mlpackage/Data/com.apple.CoreML/model.mlmodel",
+    "bytes": 38874,
+    "sha256": "c301643d10e90c3ff61812e29ff1ce4ab22337310380668ba871bcfc21b523d9",
+    "inspection": {
+      "format": "Core ML",
+      "specification_version": 8,
+      "type": "mlProgram",
+      "inputs": [
+        {
+          "name": "audio_embed",
+          "shape": [
+            1,
+            150,
+            128
+          ],
+          "dtype": 65568
+        },
+        {
+          "name": "visual_embed",
+          "shape": [
+            1,
+            150,
+            128
+          ],
+          "dtype": 65568
+        }
+      ],
+      "outputs": [
+        {
+          "name": "var_97",
+          "shape": [],
+          "dtype": 65552
+        }
+      ]
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/weight/detector_head_d6.mlpackage/Data/com.apple.CoreML/weights/weight.bin",
+    "bytes": 414336,
+    "sha256": "77a82a6dbebe2126dab45cfe2f4d3723ce24bdc8f632fd4ced0596cbbadde6f2"
+  },
+  {
+    "path": "AutoClip/optimized_asd/weight/visual_encoder.mlpackage/Data/com.apple.CoreML/model.mlmodel",
+    "bytes": 20382,
+    "sha256": "7ac0bb51862512714b51645c4bf9834a865757f46754d8560fbfc1cad6086fd1",
+    "inspection": {
+      "format": "Core ML",
+      "specification_version": 8,
+      "type": "mlProgram",
+      "inputs": [
+        {
+          "name": "v",
+          "shape": [
+            1,
+            100,
+            112,
+            112
+          ],
+          "dtype": 65568
+        }
+      ],
+      "outputs": [
+        {
+          "name": "var_197",
+          "shape": [
+            1,
+            100,
+            128
+          ],
+          "dtype": 65552
+        }
+      ]
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/weight/visual_encoder.mlpackage/Data/com.apple.CoreML/weights/weight.bin",
+    "bytes": 797632,
+    "sha256": "879f7eaa8b6881d0692ca120b3805730f976dbb89661792b5f8fac8d997da3e3"
+  },
+  {
+    "path": "model/faceDetector/s3fd/sfd_face.pth",
+    "bytes": 89844381,
+    "sha256": "d54a87c2b7543b64729c9a25eafd188da15fd3f6e02f0ecec76ae1b30d86c491",
+    "inspection": {
+      "format": "PyTorch tensors",
+      "tensor_count": 65,
+      "elements": 22459110,
+      "first_keys": [
+        "vgg.0.weight",
+        "vgg.0.bias",
+        "vgg.2.weight",
+        "vgg.2.bias",
+        "vgg.5.weight",
+        "vgg.5.bias",
+        "vgg.7.weight",
+        "vgg.7.bias"
+      ]
+    }
+  },
+  {
+    "path": "weight/finetuning_TalkSet.model",
+    "bytes": 3426337,
+    "sha256": "6b4ef53694e874e96cf630198dc479c78aebb3993bbf166aee3d926dfe7d9342",
+    "inspection": {
+      "format": "PyTorch tensors",
+      "tensor_count": 168,
+      "elements": 841086,
+      "first_keys": [
+        "model.visualEncoder.block1.s_1.weight",
+        "model.visualEncoder.block1.s_norm_1.weight",
+        "model.visualEncoder.block1.s_norm_1.bias",
+        "model.visualEncoder.block1.s_norm_1.running_mean",
+        "model.visualEncoder.block1.s_norm_1.running_var",
+        "model.visualEncoder.block1.s_norm_1.num_batches_tracked",
+        "model.visualEncoder.block1.s_2.weight",
+        "model.visualEncoder.block1.s_norm_2.weight"
+      ]
+    }
+  },
+  {
+    "path": "weight/pretrain_AVA.model",
+    "bytes": 3426337,
+    "sha256": "85e6c77fc981595234790d1e128ebb60352d37726b2445e0ef8891e2512fe9e3",
+    "inspection": {
+      "format": "PyTorch tensors",
+      "tensor_count": 168,
+      "elements": 841086,
+      "first_keys": [
+        "model.visualEncoder.block1.s_1.weight",
+        "model.visualEncoder.block1.s_norm_1.weight",
+        "model.visualEncoder.block1.s_norm_1.bias",
+        "model.visualEncoder.block1.s_norm_1.running_mean",
+        "model.visualEncoder.block1.s_norm_1.running_var",
+        "model.visualEncoder.block1.s_norm_1.num_batches_tracked",
+        "model.visualEncoder.block1.s_2.weight",
+        "model.visualEncoder.block1.s_norm_2.weight"
+      ]
+    }
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/8c1ac272-588d-11f1-a0f3-c2179141218d.data",
+    "bytes": 272483520,
+    "sha256": "93325a713fa7aa880306e1295da3812db90bfb51a35aeab2291bb43f796c6be1",
+    "inspection": {
+      "format": "ONNX external tensor data",
+      "used_by": "sym_shape_infer_temp.onnx"
+    }
+  }
+]

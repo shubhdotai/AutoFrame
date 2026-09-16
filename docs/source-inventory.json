@@ -1,0 +1,2681 @@
+[
+  {
+    "path": "ASD.py",
+    "lines": 103,
+    "summary": "",
+    "definitions": [
+      "ASD"
+    ]
+  },
+  {
+    "path": "Columbia_test.py",
+    "lines": 559,
+    "summary": "",
+    "definitions": [
+      "scene_detect",
+      "inference_video",
+      "bb_intersection_over_union",
+      "track_shot",
+      "crop_video",
+      "extract_MFCC",
+      "evaluate_network",
+      "visualization",
+      "evaluate_col_ASD",
+      "main"
+    ]
+  },
+  {
+    "path": "HOW_LR_ASD_WORKS.md",
+    "lines": 282
+  },
+  {
+    "path": "README.md",
+    "lines": 99
+  },
+  {
+    "path": "dataLoader.py",
+    "lines": 143,
+    "summary": "",
+    "definitions": [
+      "generate_audio_set",
+      "overlap",
+      "load_audio",
+      "load_visual",
+      "load_label",
+      "train_loader",
+      "val_loader"
+    ]
+  },
+  {
+    "path": "loss.py",
+    "lines": 43,
+    "summary": "",
+    "definitions": [
+      "lossAV",
+      "lossV"
+    ]
+  },
+  {
+    "path": "test_ml_vision.py",
+    "lines": 192,
+    "summary": "",
+    "definitions": [
+      "get_request",
+      "detect_faces_on_frame",
+      "draw_faces",
+      "detect_and_annotate_streaming"
+    ]
+  },
+  {
+    "path": "train.py",
+    "lines": 85,
+    "summary": "",
+    "definitions": [
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/clipwell/next-env.d.ts",
+    "lines": 6
+  },
+  {
+    "path": "AutoClip/clipwell/next.config.ts",
+    "lines": 7
+  },
+  {
+    "path": "AutoClip/clipwell/app/layout.tsx",
+    "lines": 46
+  },
+  {
+    "path": "AutoClip/clipwell/app/page.tsx",
+    "lines": 246
+  },
+  {
+    "path": "AutoClip/clipwell/app/site-links.ts",
+    "lines": 2
+  },
+  {
+    "path": "AutoClip/clipwell/app/api/README.md",
+    "lines": 10
+  },
+  {
+    "path": "AutoClip/clipwell/app/components/site-footer.tsx",
+    "lines": 64
+  },
+  {
+    "path": "AutoClip/clipwell/app/components/site-header.tsx",
+    "lines": 23
+  },
+  {
+    "path": "AutoClip/clipwell/app/components/theme-toggle.tsx",
+    "lines": 48
+  },
+  {
+    "path": "AutoClip/clipwell/app/privacy/page.tsx",
+    "lines": 78
+  },
+  {
+    "path": "AutoClip/clipwell/app/terms/page.tsx",
+    "lines": 86
+  },
+  {
+    "path": "AutoClip/old/ACTIVE_SPEAKER_ALTERNATIVES.md",
+    "lines": 278
+  },
+  {
+    "path": "AutoClip/old/CapCut_Decoded.md",
+    "lines": 276
+  },
+  {
+    "path": "AutoClip/old/CapCut_MVP_Plan-2.md",
+    "lines": 253
+  },
+  {
+    "path": "AutoClip/old/CapCut_MVP_Plan.md",
+    "lines": 241
+  },
+  {
+    "path": "AutoClip/old/README.md",
+    "lines": 41
+  },
+  {
+    "path": "AutoClip/old/active_speaker.py",
+    "lines": 1215,
+    "summary": "Audio-visual active speaker detection for a two-person video.",
+    "definitions": [
+      "FaceObservation",
+      "AnalysisResult",
+      "ensure_file",
+      "ensure_model",
+      "require_ffmpeg",
+      "load_mediapipe",
+      "robust01",
+      "rolling_mean",
+      "rolling_std",
+      "interpolate_missing",
+      "distance_px",
+      "face_box",
+      "normalized_mouth_aperture",
+      "blendshape_score",
+      "observe_face",
+      "assign_observations",
+      "decode_audio_mono",
+      "audio_energy_per_frame",
+      "build_mouth_activity",
+      "local_sync_scores",
+      "decide_speakers",
+      "segments",
+      "bridge_short_gaps",
+      "remove_short_islands",
+      "analyze_video_mediapipe",
+      "expand_box",
+      "box_center",
+      "detect_opencv_faces",
+      "select_initial_pair",
+      "assign_opencv_faces",
+      "roi_bounds",
+      "crop_resized_gray",
+      "roi_motion",
+      "analyze_video_opencv",
+      "analyze_video",
+      "decision_name",
+      "format_time",
+      "print_speaker_segments",
+      "write_frame_csv",
+      "draw_quad",
+      "annotate_video",
+      "default_output_path",
+      "parse_args",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/old/diarize.py",
+    "lines": 88,
+    "summary": "Speaker diarization for MP4 videos using pyannote/speaker-diarization-3.1",
+    "definitions": [
+      "extract_audio",
+      "format_timestamp",
+      "diarize"
+    ]
+  },
+  {
+    "path": "AutoClip/old/extract_cuts.py",
+    "lines": 219,
+    "summary": "Detect scene cuts in a video and return their timestamps.",
+    "definitions": [
+      "frame_features",
+      "channel_delta",
+      "content_score",
+      "FlashFilter",
+      "detect_scenes",
+      "save_clips",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/old/extract_frames.py",
+    "lines": 161,
+    "summary": "Extract frames from a video only when visual content changes significantly.",
+    "definitions": [
+      "compute_change_score",
+      "extract_frames",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/old/mclip.py",
+    "lines": 30,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/test_depth_anything3.py",
+    "lines": 21,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/test_facemesh.py",
+    "lines": 158,
+    "summary": "Face Mesh detection on a video using the MediaPipe Tasks API (FaceLandmarker).",
+    "definitions": [
+      "ensure_model",
+      "draw_connections",
+      "draw_face_landmarks",
+      "run_face_mesh",
+      "parse_args"
+    ]
+  },
+  {
+    "path": "AutoClip/old/test_falcon.py",
+    "lines": 0,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/test_fd_yunet.py",
+    "lines": 183,
+    "summary": "",
+    "definitions": [
+      "detect_and_annotate_yunet_streaming"
+    ]
+  },
+  {
+    "path": "AutoClip/old/test_fd_yunet2.py",
+    "lines": 210,
+    "summary": "",
+    "definitions": [
+      "get_detector",
+      "detect_faces_on_frame",
+      "draw_faces",
+      "detect_and_annotate_yunet_parallel"
+    ]
+  },
+  {
+    "path": "AutoClip/old/test_ml_vision.py",
+    "lines": 192,
+    "summary": "",
+    "definitions": [
+      "get_request",
+      "detect_faces_on_frame",
+      "draw_faces",
+      "detect_and_annotate_streaming"
+    ]
+  },
+  {
+    "path": "AutoClip/old/test_mlx.py",
+    "lines": 13,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/test_rf_detr.py",
+    "lines": 202,
+    "summary": "",
+    "definitions": [
+      "detect_and_track_streaming"
+    ]
+  },
+  {
+    "path": "AutoClip/old/test_s3fd.py",
+    "lines": 234,
+    "summary": "",
+    "definitions": [
+      "get_device",
+      "get_detector",
+      "detect_faces_on_frame",
+      "draw_faces",
+      "detect_and_annotate_s3fd_parallel"
+    ]
+  },
+  {
+    "path": "AutoClip/old/test_tips_depth.py",
+    "lines": 25,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/README.md",
+    "lines": 176
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/app.py",
+    "lines": 152,
+    "summary": "",
+    "definitions": [
+      "infer_video_depth",
+      "construct_demo"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/run.py",
+    "lines": 101,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/run_streaming.py",
+    "lines": 96,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/benchmark/README.md",
+    "lines": 34
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/benchmark/__init__.py",
+    "lines": 0,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/benchmark/dataset_extract/dataset_extract_bonn.py",
+    "lines": 86,
+    "summary": "",
+    "definitions": [
+      "extract_bonn"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/benchmark/dataset_extract/dataset_extract_kitti.py",
+    "lines": 84,
+    "summary": "",
+    "definitions": [
+      "extract_kitti"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/benchmark/dataset_extract/dataset_extract_nyuv2.py",
+    "lines": 76,
+    "summary": "",
+    "definitions": [
+      "extract_nyuv2"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/benchmark/dataset_extract/dataset_extract_scannet.py",
+    "lines": 124,
+    "summary": "",
+    "definitions": [
+      "extract_scannet"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/benchmark/dataset_extract/dataset_extract_sintel.py",
+    "lines": 110,
+    "summary": "",
+    "definitions": [
+      "depth_read",
+      "extract_sintel"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/benchmark/dataset_extract/eval_utils.py",
+    "lines": 140,
+    "summary": "",
+    "definitions": [
+      "even_or_odd",
+      "gen_json",
+      "gen_json_scannet_tae",
+      "get_sorted_files",
+      "copy_crop_files"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/benchmark/eval/eval.py",
+    "lines": 265,
+    "summary": "",
+    "definitions": [
+      "get_infer",
+      "get_gt",
+      "get_flow",
+      "depth2disparity",
+      "eval_depthcrafter",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/benchmark/eval/eval_tae.py",
+    "lines": 295,
+    "summary": "",
+    "definitions": [
+      "compute_errors_torch",
+      "get_infer",
+      "get_gt",
+      "depth2disparity",
+      "tae_torch",
+      "eval_TAE"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/benchmark/eval/metric.py",
+    "lines": 117,
+    "summary": "",
+    "definitions": [
+      "abs_relative_difference",
+      "squared_relative_difference",
+      "rmse_linear",
+      "rmse_log",
+      "log10",
+      "threshold_percentage",
+      "delta1_acc",
+      "delta2_acc",
+      "delta3_acc",
+      "i_rmse",
+      "silog_rmse"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/benchmark/infer/infer.py",
+    "lines": 67,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/loss/loss.py",
+    "lines": 259,
+    "summary": "",
+    "definitions": [
+      "reduction_batch_based",
+      "reduction_image_based",
+      "gradient_loss",
+      "normalize_prediction_robust",
+      "compute_scale_and_shift",
+      "TrimmedProcrustesLoss",
+      "TrimmedMAELoss",
+      "GradientLoss",
+      "TemporalGradientMatchingLoss",
+      "VideoDepthLoss"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/loss/test_loss.py",
+    "lines": 15,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/utils/dc_utils.py",
+    "lines": 86,
+    "summary": "",
+    "definitions": [
+      "ensure_even",
+      "read_video_frames",
+      "save_video"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/utils/util.py",
+    "lines": 74,
+    "summary": "",
+    "definitions": [
+      "compute_scale_and_shift",
+      "compute_scale",
+      "compute_scale_and_shift_full",
+      "get_interpolate_frames"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/dinov2.py",
+    "lines": 415,
+    "summary": "",
+    "definitions": [
+      "named_apply",
+      "BlockChunk",
+      "DinoVisionTransformer",
+      "init_weights_vit_timm",
+      "vit_small",
+      "vit_base",
+      "vit_large",
+      "vit_giant2",
+      "DINOv2"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/dpt.py",
+    "lines": 160,
+    "summary": "",
+    "definitions": [
+      "_make_fusion_block",
+      "ConvBlock",
+      "DPTHead"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/dpt_temporal.py",
+    "lines": 125,
+    "summary": "",
+    "definitions": [
+      "DPTHeadTemporal"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/video_depth.py",
+    "lines": 163,
+    "summary": "",
+    "definitions": [
+      "VideoDepthAnything"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/video_depth_stream.py",
+    "lines": 161,
+    "summary": "",
+    "definitions": [
+      "VideoDepthAnything"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/dinov2_layers/__init__.py",
+    "lines": 11,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/dinov2_layers/attention.py",
+    "lines": 83,
+    "summary": "",
+    "definitions": [
+      "Attention",
+      "MemEffAttention"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/dinov2_layers/block.py",
+    "lines": 252,
+    "summary": "",
+    "definitions": [
+      "Block",
+      "drop_add_residual_stochastic_depth",
+      "get_branges_scales",
+      "add_residual",
+      "get_attn_bias_and_cat",
+      "drop_add_residual_stochastic_depth_list",
+      "NestedTensorBlock"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/dinov2_layers/drop_path.py",
+    "lines": 35,
+    "summary": "",
+    "definitions": [
+      "drop_path",
+      "DropPath"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/dinov2_layers/layer_scale.py",
+    "lines": 28,
+    "summary": "",
+    "definitions": [
+      "LayerScale"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/dinov2_layers/mlp.py",
+    "lines": 41,
+    "summary": "",
+    "definitions": [
+      "Mlp"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/dinov2_layers/patch_embed.py",
+    "lines": 89,
+    "summary": "",
+    "definitions": [
+      "make_2tuple",
+      "PatchEmbed"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/dinov2_layers/swiglu_ffn.py",
+    "lines": 63,
+    "summary": "",
+    "definitions": [
+      "SwiGLUFFN",
+      "SwiGLUFFNFused"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/motion_module/attention.py",
+    "lines": 429,
+    "summary": "",
+    "definitions": [
+      "CrossAttention",
+      "FeedForward",
+      "GELU",
+      "GEGLU",
+      "ApproximateGELU",
+      "precompute_freqs_cis",
+      "reshape_for_broadcast",
+      "apply_rotary_emb"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/motion_module/motion_module.py",
+    "lines": 321,
+    "summary": "",
+    "definitions": [
+      "zero_module",
+      "TemporalModule",
+      "TemporalTransformer3DModel",
+      "TemporalTransformerBlock",
+      "PositionalEncoding",
+      "TemporalAttention"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/util/blocks.py",
+    "lines": 162,
+    "summary": "",
+    "definitions": [
+      "_make_scratch",
+      "ResidualConvUnit",
+      "FeatureFusionBlock"
+    ]
+  },
+  {
+    "path": "AutoClip/old/Video-Depth-Anything/video_depth_anything/util/transform.py",
+    "lines": 158,
+    "summary": "",
+    "definitions": [
+      "Resize",
+      "NormalizeImage",
+      "PrepareForNet"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/README.md",
+    "lines": 328
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/pyproject.toml",
+    "lines": 94
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/test_script.py",
+    "lines": 21,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/da3_streaming/README.md",
+    "lines": 156
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/da3_streaming/da3_streaming.py",
+    "lines": 927,
+    "summary": "",
+    "definitions": [
+      "depth_to_point_cloud_vectorized",
+      "remove_duplicates",
+      "DA3_Streaming",
+      "copy_file"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/da3_streaming/npz_output_process.py",
+    "lines": 144,
+    "summary": "",
+    "definitions": [
+      "read_camera_poses",
+      "create_point_cloud",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/da3_streaming/fastloop/__init__.py",
+    "lines": 15,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/da3_streaming/fastloop/solve_python.py",
+    "lines": 100,
+    "summary": "",
+    "definitions": [
+      "solve_sparse",
+      "solve_system_py"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/da3_streaming/loop_utils/__init__.py",
+    "lines": 15,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/da3_streaming/loop_utils/alignment_torch.py",
+    "lines": 395,
+    "summary": "",
+    "definitions": [
+      "weighted_estimate_se3_torch",
+      "weighted_estimate_sim3_torch",
+      "weighted_estimate_sim3_numba_torch",
+      "huber_loss_torch",
+      "compute_residuals_torch",
+      "compute_huber_weights_torch",
+      "apply_transformation_torch",
+      "robust_weighted_estimate_sim3_torch",
+      "apply_sim3_direct_torch",
+      "depth_to_point_cloud_optimized_torch",
+      "warmup_torch",
+      "print_gpu_memory"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/da3_streaming/loop_utils/alignment_triton.py",
+    "lines": 543,
+    "summary": "",
+    "definitions": [
+      "apply_transformation_residual_kernel",
+      "weighted_covariance_kernel",
+      "compute_huber_weights_kernel",
+      "weighted_mean_kernel",
+      "apply_transformation_residual_triton",
+      "compute_weighted_mean_triton",
+      "compute_weighted_covariance_triton",
+      "compute_huber_weights_triton",
+      "weighted_estimate_se3_triton",
+      "weighted_estimate_sim3_triton",
+      "weighted_estimate_sim3_numba_triton",
+      "robust_weighted_estimate_sim3_triton",
+      "warmup_triton",
+      "print_gpu_memory"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/da3_streaming/loop_utils/config_utils.py",
+    "lines": 66,
+    "summary": "",
+    "definitions": [
+      "load_config",
+      "update_recursive"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/da3_streaming/loop_utils/logging_utils.py",
+    "lines": 32,
+    "summary": "",
+    "definitions": [
+      "get_style",
+      "Log"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/da3_streaming/loop_utils/loop_detector.py",
+    "lines": 391,
+    "summary": "",
+    "definitions": [
+      "VPRModel",
+      "LoopDetector",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/da3_streaming/loop_utils/loop_refinement.py",
+    "lines": 268,
+    "summary": "",
+    "definitions": [
+      "make_pypose_Sim3",
+      "SE3_to_Sim3",
+      "_format",
+      "reduce_edges",
+      "umeyama_alignment",
+      "ransac_umeyama",
+      "batch_jacobian",
+      "_residual",
+      "residual",
+      "perform_updates",
+      "pose_refinement"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/da3_streaming/loop_utils/sim3loop.py",
+    "lines": 399,
+    "summary": "",
+    "definitions": [
+      "Sim3LoopOptimizer",
+      "create_ring_transforms",
+      "example_usage"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/da3_streaming/loop_utils/sim3utils.py",
+    "lines": 1261,
+    "summary": "",
+    "definitions": [
+      "accumulate_sim3_transforms",
+      "estimate_sim3",
+      "align_point_maps",
+      "apply_sim3",
+      "apply_sim3_direct",
+      "compute_alignment_error",
+      "save_confident_pointcloud",
+      "save_confident_pointcloud_batch",
+      "optimized_vectorized_reservoir_sampling",
+      "write_ply_header",
+      "write_ply_batch",
+      "save_ply",
+      "find_chunk_index",
+      "get_frame_range",
+      "process_loop_list",
+      "compute_sim3_ab",
+      "merge_ply_files",
+      "weighted_estimate_se3",
+      "weighted_estimate_sim3",
+      "huber_loss",
+      "robust_weighted_estimate_sim3",
+      "_weighted_estimate_se3_numba",
+      "_weighted_estimate_sim3_numba",
+      "weighted_estimate_sim3_numba",
+      "huber_loss_numba",
+      "compute_residuals_numba",
+      "compute_huber_weights_numba",
+      "apply_transformation_numba",
+      "robust_weighted_estimate_sim3_numba",
+      "warmup_numba",
+      "compute_scale_ransac",
+      "compute_scale_weighted",
+      "compute_chunk_scale_advanced",
+      "precompute_scale_chunks_with_depth",
+      "weighted_align_point_maps"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/docs/API.md",
+    "lines": 465
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/docs/BENCHMARK.md",
+    "lines": 484
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/docs/CLI.md",
+    "lines": 654
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/docs/funcs/ref_view_strategy.md",
+    "lines": 183
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/api.py",
+    "lines": 446,
+    "summary": "Depth Anything 3 API module.",
+    "definitions": [
+      "DepthAnything3"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/cfg.py",
+    "lines": 144,
+    "summary": "Configuration utility functions",
+    "definitions": [
+      "load_config",
+      "resolve_recursive",
+      "resolve_inheritance",
+      "import_item",
+      "create_object",
+      "create_dataset",
+      "to_dict_recursive"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/cli.py",
+    "lines": 803,
+    "summary": "Refactored Depth Anything 3 CLI",
+    "definitions": [
+      "detect_input_type",
+      "auto",
+      "image",
+      "images",
+      "colmap",
+      "video",
+      "backend",
+      "gradio",
+      "gallery"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/registry.py",
+    "lines": 50,
+    "summary": "",
+    "definitions": [
+      "get_all_models"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/specs.py",
+    "lines": 45,
+    "summary": "",
+    "definitions": [
+      "Gaussians",
+      "Prediction"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/app/css_and_html.py",
+    "lines": 594,
+    "summary": "CSS and HTML content for the Depth Anything 3 Gradio application.",
+    "definitions": [
+      "get_header_html",
+      "get_description_html",
+      "get_acknowledgements_html",
+      "get_gradio_theme"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/app/gradio_app.py",
+    "lines": 724,
+    "summary": "Refactored Gradio App for Depth Anything 3.",
+    "definitions": [
+      "DepthAnything3App",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/app/modules/__init__.py",
+    "lines": 43,
+    "summary": "Modules package for Depth Anything 3 Gradio app.",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/app/modules/event_handlers.py",
+    "lines": 619,
+    "summary": "Event handling module for Depth Anything 3 Gradio app.",
+    "definitions": [
+      "EventHandlers"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/app/modules/file_handlers.py",
+    "lines": 304,
+    "summary": "File handling module for Depth Anything 3 Gradio app.",
+    "definitions": [
+      "FileHandler"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/app/modules/model_inference.py",
+    "lines": 260,
+    "summary": "Model inference module for Depth Anything 3 Gradio app.",
+    "definitions": [
+      "ModelInference"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/app/modules/ui_components.py",
+    "lines": 477,
+    "summary": "UI components module for Depth Anything 3 Gradio app.",
+    "definitions": [
+      "UIComponents"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/app/modules/utils.py",
+    "lines": 207,
+    "summary": "Utility functions for Depth Anything 3 Gradio app.",
+    "definitions": [
+      "create_depth_visualization",
+      "save_to_gallery_func",
+      "get_scene_info",
+      "get_logo_base64"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/app/modules/visualization.py",
+    "lines": 434,
+    "summary": "Visualization module for Depth Anything 3 Gradio app.",
+    "definitions": [
+      "VisualizationHandler"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/bench/__init__.py",
+    "lines": 45,
+    "summary": "Depth Anything 3 Benchmark Evaluation Module.",
+    "definitions": [
+      "__getattr__"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/bench/dataset.py",
+    "lines": 136,
+    "summary": "Base dataset class for benchmark evaluation.",
+    "definitions": [
+      "_wait_for_file_ready",
+      "Dataset"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/bench/evaluator.py",
+    "lines": 752,
+    "summary": "Main Evaluator class for DepthAnything3 benchmark evaluation.",
+    "definitions": [
+      "Evaluator"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/bench/print_metrics.py",
+    "lines": 618,
+    "summary": "Beautiful metrics printing utilities for benchmark evaluation.",
+    "definitions": [
+      "Colors",
+      "strip_ansi",
+      "colorize_value",
+      "MetricsPrinter",
+      "load_metrics_from_dir",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/bench/registries.py",
+    "lines": 85,
+    "summary": "Auto-loading registry system for benchmark datasets.",
+    "definitions": [
+      "_import_all_datasets_once",
+      "AutoRegistry"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/bench/utils.py",
+    "lines": 525,
+    "summary": "Utility functions for benchmark evaluation.",
+    "definitions": [
+      "quat2rotmat",
+      "nn_correspondance",
+      "evaluate_3d_reconstruction",
+      "create_tsdf_volume",
+      "fuse_depth_to_tsdf",
+      "sample_points_from_mesh",
+      "build_pair_index",
+      "compute_pose",
+      "align_to_first_camera",
+      "rotation_angle",
+      "translation_angle",
+      "compare_translation_by_angle",
+      "calculate_auc_np",
+      "se3_to_relative_pose_error",
+      "closed_form_inverse_se3"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/bench/datasets/__init__.py",
+    "lines": 21,
+    "summary": "Benchmark dataset implementations.",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/bench/datasets/dtu.py",
+    "lines": 681,
+    "summary": "DTU Benchmark dataset implementation.",
+    "definitions": [
+      "DTU"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/bench/datasets/dtu64.py",
+    "lines": 182,
+    "summary": "DTU-64 Dataset implementation for POSE EVALUATION ONLY.",
+    "definitions": [
+      "DTU64"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/bench/datasets/eth3d.py",
+    "lines": 594,
+    "summary": "ETH3D Benchmark dataset implementation.",
+    "definitions": [
+      "ETH3D"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/bench/datasets/hiroom.py",
+    "lines": 440,
+    "summary": "HiRoom Dataset implementation.",
+    "definitions": [
+      "_load_scene_list",
+      "HiRoomDataset"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/bench/datasets/scannetpp.py",
+    "lines": 591,
+    "summary": "ScanNet++ Benchmark dataset implementation.",
+    "definitions": [
+      "ScanNetPP"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/bench/datasets/sevenscenes.py",
+    "lines": 449,
+    "summary": "7Scenes Benchmark dataset implementation.",
+    "definitions": [
+      "SevenScenes"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/__init__.py",
+    "lines": 20,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/cam_dec.py",
+    "lines": 45,
+    "summary": "",
+    "definitions": [
+      "CameraDec"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/cam_enc.py",
+    "lines": 80,
+    "summary": "",
+    "definitions": [
+      "CameraEnc"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/da3.py",
+    "lines": 442,
+    "summary": "",
+    "definitions": [
+      "_wrap_cfg",
+      "DepthAnything3Net",
+      "NestedDepthAnything3Net"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/dpt.py",
+    "lines": 458,
+    "summary": "",
+    "definitions": [
+      "DPT",
+      "_make_fusion_block",
+      "_make_scratch",
+      "ResidualConvUnit",
+      "FeatureFusionBlock"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/dualdpt.py",
+    "lines": 488,
+    "summary": "",
+    "definitions": [
+      "DualDPT"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/gs_adapter.py",
+    "lines": 200,
+    "summary": "",
+    "definitions": [
+      "GaussianAdapter"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/gsdpt.py",
+    "lines": 133,
+    "summary": "",
+    "definitions": [
+      "GSDPT"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/reference_view_selector.py",
+    "lines": 223,
+    "summary": "Reference View Selection Strategies",
+    "definitions": [
+      "select_reference_view",
+      "reorder_by_reference",
+      "restore_original_order"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/dinov2/dinov2.py",
+    "lines": 64,
+    "summary": "",
+    "definitions": [
+      "DinoV2"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/dinov2/vision_transformer.py",
+    "lines": 456,
+    "summary": "",
+    "definitions": [
+      "get_1d_sincos_pos_embed_from_grid",
+      "named_apply",
+      "BlockChunk",
+      "DinoVisionTransformer",
+      "vit_small",
+      "vit_base",
+      "vit_large",
+      "vit_giant2"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/dinov2/layers/__init__.py",
+    "lines": 25,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/dinov2/layers/attention.py",
+    "lines": 100,
+    "summary": "",
+    "definitions": [
+      "Attention"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/dinov2/layers/block.py",
+    "lines": 143,
+    "summary": "",
+    "definitions": [
+      "Block",
+      "drop_add_residual_stochastic_depth",
+      "get_branges_scales"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/dinov2/layers/drop_path.py",
+    "lines": 35,
+    "summary": "",
+    "definitions": [
+      "drop_path",
+      "DropPath"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/dinov2/layers/layer_scale.py",
+    "lines": 31,
+    "summary": "",
+    "definitions": [
+      "LayerScale"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/dinov2/layers/mlp.py",
+    "lines": 40,
+    "summary": "",
+    "definitions": [
+      "Mlp"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/dinov2/layers/patch_embed.py",
+    "lines": 94,
+    "summary": "",
+    "definitions": [
+      "make_2tuple",
+      "PatchEmbed"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/dinov2/layers/rope.py",
+    "lines": 200,
+    "summary": "",
+    "definitions": [
+      "PositionGetter",
+      "RotaryPositionEmbedding2D"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/dinov2/layers/swiglu_ffn.py",
+    "lines": 62,
+    "summary": "",
+    "definitions": [
+      "SwiGLUFFN",
+      "SwiGLUFFNFused"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/utils/attention.py",
+    "lines": 109,
+    "summary": "",
+    "definitions": [
+      "Attention",
+      "LayerScale",
+      "Mlp"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/utils/block.py",
+    "lines": 81,
+    "summary": "",
+    "definitions": [
+      "Block"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/utils/gs_renderer.py",
+    "lines": 340,
+    "summary": "",
+    "definitions": [
+      "render_3dgs",
+      "run_renderer_in_chunk_w_trj_mode"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/utils/head_utils.py",
+    "lines": 230,
+    "summary": "",
+    "definitions": [
+      "activate_head_gs",
+      "Permute",
+      "position_grid_to_embed",
+      "make_sincos_pos_embed",
+      "create_uv_grid",
+      "custom_interpolate"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/model/utils/transform.py",
+    "lines": 208,
+    "summary": "",
+    "definitions": [
+      "extri_intri_to_pose_encoding",
+      "pose_encoding_to_extri_intri",
+      "quat_to_mat",
+      "mat_to_quat",
+      "_sqrt_positive_part",
+      "standardize_quaternion",
+      "cam_quat_xyzw_to_world_quat_wxyz"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/services/__init__.py",
+    "lines": 24,
+    "summary": "Services module for Depth Anything 3.",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/services/backend.py",
+    "lines": 1417,
+    "summary": "Model backend service for Depth Anything 3.",
+    "definitions": [
+      "InferenceRequest",
+      "InferenceResponse",
+      "TaskStatus",
+      "ModelBackend",
+      "_process_next_task",
+      "_run_inference_task",
+      "_cleanup_old_tasks",
+      "_schedule_task_cleanup",
+      "_load_gallery_html",
+      "_gallery_url_join",
+      "_is_plain_name",
+      "build_group_list",
+      "build_group_manifest",
+      "create_app",
+      "start_server"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/services/gallery.py",
+    "lines": 806,
+    "summary": "Depth Anything 3 Gallery Server (two-level, single-file)",
+    "definitions": [
+      "_url_join",
+      "_is_plain_name",
+      "build_group_list",
+      "build_group_manifest",
+      "GalleryHandler",
+      "gallery",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/services/inference_service.py",
+    "lines": 239,
+    "summary": "Unified Inference Service",
+    "definitions": [
+      "InferenceService",
+      "run_inference"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/services/input_handlers.py",
+    "lines": 266,
+    "summary": "Input Processing Service",
+    "definitions": [
+      "InputHandler",
+      "ImageHandler",
+      "ImagesHandler",
+      "ColmapHandler",
+      "VideoHandler",
+      "parse_export_feat"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/alignment.py",
+    "lines": 163,
+    "summary": "Alignment utilities for depth estimation and metric scaling.",
+    "definitions": [
+      "least_squares_scale_scalar",
+      "compute_sky_mask",
+      "compute_alignment_mask",
+      "sample_tensor_for_quantile",
+      "apply_metric_scaling",
+      "set_sky_regions_to_max_depth"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/api_helpers.py",
+    "lines": 58,
+    "summary": "",
+    "definitions": [
+      "parse_scalar",
+      "fn_kv_csv"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/camera_trj_helpers.py",
+    "lines": 479,
+    "summary": "",
+    "definitions": [
+      "render_stabilization_path",
+      "render_wander_path",
+      "render_dolly_zoom_path",
+      "interpolate_intrinsics",
+      "intersect_rays",
+      "normalize",
+      "generate_coordinate_frame",
+      "generate_rotation_coordinate_frame",
+      "matrix_to_euler",
+      "euler_to_matrix",
+      "extrinsics_to_pivot_parameters",
+      "pivot_parameters_to_extrinsics",
+      "interpolate_circular",
+      "interpolate_pivot_parameters",
+      "interpolate_extrinsics",
+      "generate_wobble_transformation",
+      "render_wobble_inter_path"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/constants.py",
+    "lines": 270,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/geometry.py",
+    "lines": 498,
+    "summary": "",
+    "definitions": [
+      "as_homogeneous",
+      "affine_inverse",
+      "transpose_last_two_axes",
+      "affine_inverse_np",
+      "quat_to_mat",
+      "mat_to_quat",
+      "_sqrt_positive_part",
+      "standardize_quaternion",
+      "sample_image_grid",
+      "homogenize_points",
+      "homogenize_vectors",
+      "transform_rigid",
+      "transform_cam2world",
+      "unproject",
+      "get_world_rays",
+      "get_fov",
+      "map_pdf_to_opacity",
+      "normalize_homogenous_points",
+      "inverse_intrinsic_matrix",
+      "pixel_space_to_camera_space",
+      "camera_space_to_world_space",
+      "camera_space_to_pixel_space",
+      "world_space_to_camera_space",
+      "unproject_depth"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/gsply_helpers.py",
+    "lines": 173,
+    "summary": "",
+    "definitions": [
+      "construct_list_of_attributes",
+      "export_ply",
+      "inverse_sigmoid",
+      "save_gaussian_ply"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/layout_helpers.py",
+    "lines": 216,
+    "summary": "This file contains useful layout utilities for images. They are:",
+    "definitions": [
+      "_sanitize_color",
+      "_intersperse",
+      "_get_main_dim",
+      "_get_cross_dim",
+      "_compute_offset",
+      "overlay",
+      "cat",
+      "hcat",
+      "vcat",
+      "add_border"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/logger.py",
+    "lines": 82,
+    "summary": "",
+    "definitions": [
+      "Color",
+      "get_env_log_level",
+      "Logger"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/memory.py",
+    "lines": 127,
+    "summary": "GPU memory utility helpers.",
+    "definitions": [
+      "get_gpu_memory_info",
+      "cleanup_cuda_memory",
+      "check_memory_availability",
+      "estimate_memory_requirement"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/model_loading.py",
+    "lines": 149,
+    "summary": "Model loading and state dict conversion utilities.",
+    "definitions": [
+      "convert_general_state_dict",
+      "convert_metric_state_dict",
+      "load_pretrained_weights",
+      "load_pretrained_nested_weights"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/parallel_utils.py",
+    "lines": 133,
+    "summary": "",
+    "definitions": [
+      "async_call_func",
+      "async_call",
+      "_save_image_impl",
+      "save_image_async",
+      "save_image",
+      "parallel_execution"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/pca_utils.py",
+    "lines": 284,
+    "summary": "PCA utilities for feature visualization and dimensionality reduction (video-friendly).",
+    "definitions": [
+      "pca_to_rgb_4d_bf16_percentile",
+      "PCARGBVisualizer"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/pose_align.py",
+    "lines": 347,
+    "summary": "",
+    "definitions": [
+      "batch_apply_alignment_to_enc",
+      "batch_apply_alignment_to_ext",
+      "batch_align_poses_umeyama",
+      "_to44",
+      "_poses_from_ext",
+      "_umeyama_sim3_from_paths",
+      "_apply_sim3_to_poses",
+      "_median_nn_thresh",
+      "_ransac_align_sim3",
+      "align_poses_umeyama",
+      "apply_umeyama_alignment_to_ext",
+      "transform_points_sim3",
+      "_rand_rot",
+      "_rand_pose"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/ray_utils.py",
+    "lines": 523,
+    "summary": "",
+    "definitions": [
+      "compute_optimal_rotation_intrinsics_batch",
+      "ql_decomposition",
+      "find_homography_least_squares_weighted_torch",
+      "ransac_find_homography_weighted",
+      "find_homography_least_squares_weighted_torch_batch",
+      "ransac_find_homography_weighted_fast",
+      "ransac_find_homography_weighted_fast_batch",
+      "get_params_for_ransac",
+      "camray_to_caminfo",
+      "get_extrinsic_from_camray"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/read_write_model.py",
+    "lines": 585,
+    "summary": "",
+    "definitions": [
+      "Image",
+      "read_next_bytes",
+      "write_next_bytes",
+      "read_cameras_text",
+      "read_cameras_binary",
+      "write_cameras_text",
+      "write_cameras_binary",
+      "read_images_text",
+      "read_images_binary",
+      "write_images_text",
+      "write_images_binary",
+      "read_points3D_text",
+      "read_points3D_binary",
+      "write_points3D_text",
+      "write_points3D_binary",
+      "detect_model_format",
+      "read_model",
+      "write_model",
+      "qvec2rotmat",
+      "rotmat2qvec",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/registry.py",
+    "lines": 36,
+    "summary": "",
+    "definitions": [
+      "Registry"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/sh_helpers.py",
+    "lines": 88,
+    "summary": "",
+    "definitions": [
+      "project_to_so3_strict",
+      "rotate_sh"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/visualize.py",
+    "lines": 120,
+    "summary": "",
+    "definitions": [
+      "visualize_depth",
+      "vis_depth_map_tensor",
+      "apply_color_map",
+      "apply_color_map_to_image"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/export/__init__.py",
+    "lines": 59,
+    "summary": "",
+    "definitions": [
+      "export"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/export/colmap.py",
+    "lines": 150,
+    "summary": "",
+    "definitions": [
+      "export_to_colmap",
+      "_create_xyf"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/export/depth_vis.py",
+    "lines": 41,
+    "summary": "",
+    "definitions": [
+      "export_to_depth_vis"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/export/feat_vis.py",
+    "lines": 65,
+    "summary": "",
+    "definitions": [
+      "export_to_feat_vis"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/export/glb.py",
+    "lines": 432,
+    "summary": "",
+    "definitions": [
+      "set_sky_depth",
+      "get_conf_thresh",
+      "export_to_glb",
+      "_as_homogeneous44",
+      "_depths_to_world_points_with_colors",
+      "_filter_and_downsample",
+      "_estimate_scene_scale",
+      "_compute_alignment_transform_first_cam_glTF_center_by_points",
+      "_add_cameras_to_scene",
+      "_camera_frustum_lines",
+      "_index_color_rgb",
+      "_hsv_to_rgb"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/export/gs.py",
+    "lines": 154,
+    "summary": "",
+    "definitions": [
+      "export_to_gs_ply",
+      "export_to_gs_video"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/export/npz.py",
+    "lines": 73,
+    "summary": "",
+    "definitions": [
+      "export_to_npz",
+      "export_to_mini_npz"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/export/utils.py",
+    "lines": 30,
+    "summary": "",
+    "definitions": [
+      "_denorm_and_to_uint8"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/io/input_processor.py",
+    "lines": 501,
+    "summary": "Input processor for Depth Anything 3 (parallelized).",
+    "definitions": [
+      "InputProcessor"
+    ]
+  },
+  {
+    "path": "AutoClip/old/depth-anything-3/src/depth_anything_3/utils/io/output_processor.py",
+    "lines": 172,
+    "summary": "Output processor for Depth Anything 3.",
+    "definitions": [
+      "OutputProcessor"
+    ]
+  },
+  {
+    "path": "AutoClip/old/swift_depth/DepthVideo/Package.swift",
+    "lines": 15
+  },
+  {
+    "path": "AutoClip/old/swift_depth/DepthVideo/Sources/DepthVideo/DepthVideo.swift",
+    "lines": 706
+  },
+  {
+    "path": "AutoClip/old/swift_face_person/Package.swift",
+    "lines": 10
+  },
+  {
+    "path": "AutoClip/old/swift_face_person/detect_video.swift",
+    "lines": 384
+  },
+  {
+    "path": "AutoClip/old/swift_face_person/Sources/DetectVideo/main.swift",
+    "lines": 376
+  },
+  {
+    "path": "AutoClip/optimized_asd/ASD.py",
+    "lines": 58,
+    "summary": "Minimal ASD wrapper needed for optimized inference.",
+    "definitions": [
+      "_default_device",
+      "ASD"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/INFERENCE_EXPLAINED.md",
+    "lines": 584
+  },
+  {
+    "path": "AutoClip/optimized_asd/README.md",
+    "lines": 512
+  },
+  {
+    "path": "AutoClip/optimized_asd/SUMMARY.md",
+    "lines": 15
+  },
+  {
+    "path": "AutoClip/optimized_asd/__init__.py",
+    "lines": 0,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/optimized_asd/cropping.py",
+    "lines": 107,
+    "summary": "Per-track face video + audio extraction for model inference.",
+    "definitions": [
+      "crop_face_track"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/face_detection.py",
+    "lines": 139,
+    "summary": "Apple Vision face detection (VNDetectFaceRectanglesRequest).",
+    "definitions": [
+      "_get_request",
+      "_detect_one_frame",
+      "detect_faces_in_video"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/face_detection_yolo.py",
+    "lines": 172,
+    "summary": "YOLOv8 face + person detection (iitolstykh/YOLO-Face-Person-Detector).",
+    "definitions": [
+      "_resolve_device",
+      "_load_model",
+      "detect_faces_in_video"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/inference.py",
+    "lines": 256,
+    "summary": "Optimized LR-ASD inference for long videos.",
+    "definitions": [
+      "load_model",
+      "_read_face_window",
+      "compute_embeddings",
+      "score_detector",
+      "run_asd_on_track"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/loss.py",
+    "lines": 39,
+    "summary": "Inference-compatible TalkNet/LR-ASD loss heads.",
+    "definitions": [
+      "lossAV",
+      "lossV"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/media.py",
+    "lines": 59,
+    "summary": "Shared media helpers for the ASD pipeline.",
+    "definitions": [
+      "ensure_dir",
+      "run_ffmpeg",
+      "preprocess_video",
+      "mux_audio"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/report.py",
+    "lines": 165,
+    "summary": "Generate a results.txt report in the same format as the original repository's",
+    "definitions": [
+      "build_report",
+      "write_report"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/run.py",
+    "lines": 429,
+    "summary": "End-to-end CLI for the optimized ASD pipeline.",
+    "definitions": [
+      "_parse_durations",
+      "_default_weights_path",
+      "_project_path",
+      "_write_json",
+      "_tracks_json",
+      "_crop_json",
+      "_scores_json",
+      "_trim_json",
+      "parse_args",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/scenes.py",
+    "lines": 72,
+    "summary": "Scene detection helpers.",
+    "definitions": [
+      "detect_scenes",
+      "scene_json"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/shortform.py",
+    "lines": 945,
+    "summary": "Long-form -> short-form (9:16) reframer.",
+    "definitions": [
+      "_smooth_scores",
+      "_smooth_bboxes",
+      "_crop_dims",
+      "_per_frame_intent",
+      "_segment_anchors",
+      "build_reframe_plan",
+      "_segments_from",
+      "serialize_plan",
+      "_split_long_phrase",
+      "_phrases_in",
+      "_wrap_words",
+      "_draw_phrase",
+      "_filled_rounded_rect",
+      "_wrap_lines",
+      "_draw_hook",
+      "_mux_audio_segment",
+      "render_shortform_segment",
+      "_read_json",
+      "_project_path",
+      "_load_artifacts",
+      "parse_args",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/shortform_auto.py",
+    "lines": 345,
+    "summary": "End-to-end auto-shorts pipeline.",
+    "definitions": [
+      "transcribe_audio",
+      "pick_viral_clips",
+      "_extract_json_array",
+      "_normalize",
+      "_locate_span",
+      "llm_clips_to_shorts",
+      "render_all",
+      "parse_args",
+      "_load_or",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/tracking.py",
+    "lines": 105,
+    "summary": "Scene-aware IoU face tracking with bbox interpolation.",
+    "definitions": [
+      "_iou",
+      "_scene_ranges",
+      "_track_faces_in_range",
+      "track_faces"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/transcript_data.py",
+    "lines": 1179,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/optimized_asd/visualize.py",
+    "lines": 251,
+    "summary": "Render the active-speaker bounding boxes on top of the source video.",
+    "definitions": [
+      "_smooth",
+      "_smooth_bbox",
+      "render_active_speaker_video",
+      "render_raw_detections_video"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/model/Classifier.py",
+    "lines": 32,
+    "summary": "Fusion and temporal detector modules.",
+    "definitions": [
+      "Fusion",
+      "Detector"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/model/Encoder.py",
+    "lines": 109,
+    "summary": "Audio and visual frontends for the TalkNet/LR-ASD checkpoint.",
+    "definitions": [
+      "VisualBlock",
+      "VisualEncoder",
+      "AudioBlock",
+      "AudioEncoder"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/model/Model.py",
+    "lines": 31,
+    "summary": "TalkNet/LR-ASD model wrapper.",
+    "definitions": [
+      "ASD_Model"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/model/__init__.py",
+    "lines": 2,
+    "summary": "TalkNet/LR-ASD model modules used by optimized_asd.",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/benchmark_native.py",
+    "lines": 36,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/detection_optimized.py",
+    "lines": 415,
+    "summary": "Optimized YOLO Face & Person Detection \u2014 MPS (Apple Silicon)",
+    "definitions": [
+      "get_device",
+      "sync_device",
+      "letterbox",
+      "extract_frames",
+      "preprocess_batch",
+      "postprocess_batch",
+      "_nms_per_class",
+      "_compute_iou",
+      "draw_boxes",
+      "export_video",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/detector.py",
+    "lines": 105,
+    "summary": "YOLOv8 face + person detector with scene-aware frame sampling.",
+    "definitions": [
+      "_auto_device",
+      "FacePersonDetector"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/face_embedder.py",
+    "lines": 56,
+    "summary": "FaceLiVTv2 embedding wrapper for cross-scene face matching.",
+    "definitions": [
+      "_auto_device",
+      "FaceEmbedder"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/pipeline.py",
+    "lines": 61,
+    "summary": "End-to-end face + person tracking with stable IDs across scenes.",
+    "definitions": [
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/pipeline_faces.py",
+    "lines": 276,
+    "summary": "Scene-aware face tracking with ByteTrack + cross-scene matching via embeddings.",
+    "definitions": [
+      "_device",
+      "color_for",
+      "interp",
+      "_reset_tracker",
+      "_crop",
+      "track_scene",
+      "_pick_samples",
+      "first_match_in_gallery",
+      "_prune_gallery",
+      "assign_global_ids",
+      "relabel",
+      "expand",
+      "draw",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/quantized_yolo.py",
+    "lines": 248,
+    "summary": "Export YOLO-Face-Person-Detector to ONNX and quantize to INT8/UINT8.",
+    "definitions": [
+      "download_weights",
+      "export_to_onnx",
+      "export_static_for_webgpu",
+      "export_fp16_static_for_webgpu",
+      "quantize_dynamic",
+      "quantize_static_with_calibration"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/readme.md",
+    "lines": 2
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/renderer.py",
+    "lines": 48,
+    "summary": "Render an annotated video: stable color + label per global identity.",
+    "definitions": [
+      "_color",
+      "_draw_box",
+      "Renderer"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/scene_detector.py",
+    "lines": 32,
+    "summary": "Scene detection with PySceneDetect's AdaptiveDetector.",
+    "definitions": [
+      "SceneDetector"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/test.py",
+    "lines": 44,
+    "summary": "",
+    "definitions": [
+      "extract_last_frames"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/test_edgeface.py",
+    "lines": 205,
+    "summary": "Compare two faces using EdgeFace-XS (gamma=0.6).",
+    "definitions": [
+      "pick_device",
+      "_load_edgeface_aligner",
+      "load_model",
+      "get_embedding",
+      "cosine_similarity",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/test_facelvit2.py",
+    "lines": 609,
+    "summary": "Single-file FaceLiVTv2 face comparison.",
+    "definitions": [
+      "Conv2d_BN",
+      "BN_Linear",
+      "Residual",
+      "FFN",
+      "Classfier",
+      "RepConv",
+      "StemLayer",
+      "PatchMerging",
+      "MHSA",
+      "Affine",
+      "MultiHeadLinearAttention",
+      "Block",
+      "Stage",
+      "FaceLiVTv2",
+      "build_model",
+      "_Aligner",
+      "load_model",
+      "get_embedding",
+      "cosine_similarity",
+      "pick_device",
+      "list_image_paths",
+      "load_embeddings_for_paths",
+      "compare_embeddings",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/test_lfm.py",
+    "lines": 21,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/test_qwen_35_9b.py",
+    "lines": 9,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/optimized_asd/optimized_python/tracker.py",
+    "lines": 382,
+    "summary": "Scene-aware face/person tracking with conservative identity correction.",
+    "definitions": [
+      "_iou",
+      "_area",
+      "_center",
+      "_velocity",
+      "_containment",
+      "_track_bounds",
+      "_overlaps",
+      "_ScopedTracker",
+      "Tracker"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Package.swift",
+    "lines": 45
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/README.md",
+    "lines": 524
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/auto.py",
+    "lines": 451,
+    "summary": "End-to-end auto-shorts pipeline.",
+    "definitions": [
+      "ensure_swift_binaries",
+      "run_asd",
+      "extract_audio_16k_mono",
+      "transcribe",
+      "pick_viral_clips",
+      "_extract_json_array",
+      "_normalize",
+      "_locate_span",
+      "llm_clips_to_shorts",
+      "write_transcript_for_shortform",
+      "run_shortform",
+      "_read_json",
+      "_read_or_none",
+      "parse_args",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/prompt.py",
+    "lines": 62,
+    "summary": "The viral-shorts selection prompt fed to the LLM. The model returns a JSON",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/ASDInference.swift",
+    "lines": 388
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/Artifacts.swift",
+    "lines": 71
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/AsdTypes.swift",
+    "lines": 145
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/AudioExtractor.swift",
+    "lines": 63
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/CaptionOverlay.swift",
+    "lines": 193
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/ClipLocator.swift",
+    "lines": 105
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/EndToEnd.swift",
+    "lines": 350
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/FaceDetector.swift",
+    "lines": 47
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/FaceTracker.swift",
+    "lines": 119
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/HookOverlay.swift",
+    "lines": 112
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/MFCC.swift",
+    "lines": 192
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/Output.swift",
+    "lines": 179
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/Pipeline.swift",
+    "lines": 212
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/PlanBuilder.swift",
+    "lines": 297
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/PlanIO.swift",
+    "lines": 87
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/PythonRunner.swift",
+    "lines": 72
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/SceneDetector.swift",
+    "lines": 100
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/ShortRenderer.swift",
+    "lines": 395
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/ShortTypes.swift",
+    "lines": 172
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/Shortform.swift",
+    "lines": 88
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/VideoReader.swift",
+    "lines": 95
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/VideoRenderer.swift",
+    "lines": 289
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/ASDCore/WAVWriter.swift",
+    "lines": 47
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/asd/main.swift",
+    "lines": 87
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/e2e/main.swift",
+    "lines": 121
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/shortform/main.swift",
+    "lines": 109
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/shortform_app/App.swift",
+    "lines": 33
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/shortform_app/AppPaths.swift",
+    "lines": 49
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/shortform_app/ContentView.swift",
+    "lines": 202
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/shortform_app/PipelineRunner.swift",
+    "lines": 113
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/shortform_app/ShortCard.swift",
+    "lines": 67
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/Sources/shortform_app/VideoDropArea.swift",
+    "lines": 82
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/python/asr.py",
+    "lines": 49,
+    "summary": "Run ASR (parakeet-mlx) on an audio file and print JSON to stdout.",
+    "definitions": [
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/swift_asd/python/llm.py",
+    "lines": 67,
+    "summary": "Run an MLX LLM with VIRAL_SHORTS_PROMPT and print the parsed clip array.",
+    "definitions": [
+      "_extract_json_array",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/optimized_asd/tmps/lfmt.py",
+    "lines": 32,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/optimized_asd/tmps/parakeett.py",
+    "lines": 28,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/optimized_asd/tmps/prompt.py",
+    "lines": 154,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/optimized_asd/tmps/qwen3.5-4b-optiq.py",
+    "lines": 9,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/optimized_asd/tmps/qwen3_asr.py",
+    "lines": 12,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/optimized_asd/tmps/qwent.py",
+    "lines": 17,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/optimized_asd/tmps/qwent2.py",
+    "lines": 15,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/optimized_asd/tmps/qwent3.py",
+    "lines": 23,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/optimized_asd/tmps/siglinot.py",
+    "lines": 38,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "AutoClip/optimized_asd/tools/export_coreml.py",
+    "lines": 183,
+    "summary": "Export LR-ASD weights to CoreML mlpackages.",
+    "definitions": [
+      "VisualWrap",
+      "AudioWrap",
+      "BackendWrap",
+      "_convert",
+      "_max_abs_diff",
+      "_parity",
+      "main"
+    ]
+  },
+  {
+    "path": "AutoClip/tmp/yolo_ut.py",
+    "lines": 27,
+    "summary": "",
+    "definitions": [
+      "fwd"
+    ]
+  },
+  {
+    "path": "model/Classifier.py",
+    "lines": 45,
+    "summary": "",
+    "definitions": [
+      "Fusion",
+      "Detector"
+    ]
+  },
+  {
+    "path": "model/Encoder.py",
+    "lines": 148,
+    "summary": "",
+    "definitions": [
+      "Audio_Block",
+      "Visual_Block",
+      "visual_encoder",
+      "audio_encoder"
+    ]
+  },
+  {
+    "path": "model/Model.py",
+    "lines": 45,
+    "summary": "",
+    "definitions": [
+      "ASD_Model"
+    ]
+  },
+  {
+    "path": "model/faceDetector/README.md",
+    "lines": 3
+  },
+  {
+    "path": "model/faceDetector/__init__.py",
+    "lines": 1,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "model/faceDetector/s3fd/__init__.py",
+    "lines": 66,
+    "summary": "",
+    "definitions": [
+      "S3FD"
+    ]
+  },
+  {
+    "path": "model/faceDetector/s3fd/box_utils.py",
+    "lines": 217,
+    "summary": "",
+    "definitions": [
+      "nms_",
+      "decode",
+      "nms",
+      "Detect",
+      "PriorBox"
+    ]
+  },
+  {
+    "path": "model/faceDetector/s3fd/nets.py",
+    "lines": 180,
+    "summary": "",
+    "definitions": [
+      "L2Norm",
+      "S3FDNet"
+    ]
+  },
+  {
+    "path": "optimized_asd/INFERENCE_EXPLAINED.md",
+    "lines": 584
+  },
+  {
+    "path": "optimized_asd/README.md",
+    "lines": 502
+  },
+  {
+    "path": "optimized_asd/__init__.py",
+    "lines": 0,
+    "summary": "",
+    "definitions": []
+  },
+  {
+    "path": "optimized_asd/cropping.py",
+    "lines": 101,
+    "summary": "Per-track face video + audio extraction.",
+    "definitions": [
+      "crop_face_track"
+    ]
+  },
+  {
+    "path": "optimized_asd/face_detection.py",
+    "lines": 139,
+    "summary": "Apple Vision face detection (VNDetectFaceRectanglesRequest).",
+    "definitions": [
+      "_get_request",
+      "_detect_one_frame",
+      "detect_faces_in_video"
+    ]
+  },
+  {
+    "path": "optimized_asd/inference.py",
+    "lines": 253,
+    "summary": "Optimized LR-ASD inference for long videos.",
+    "definitions": [
+      "load_model",
+      "_read_face_window",
+      "compute_embeddings",
+      "score_detector",
+      "run_asd_on_track"
+    ]
+  },
+  {
+    "path": "optimized_asd/report.py",
+    "lines": 110,
+    "summary": "Generate a results.txt report in the same format as the original repository's",
+    "definitions": [
+      "write_report"
+    ]
+  },
+  {
+    "path": "optimized_asd/run.py",
+    "lines": 278,
+    "summary": "End-to-end CLI for the optimized ASD pipeline.",
+    "definitions": [
+      "_parse_durations",
+      "parse_args",
+      "preprocess_video",
+      "main"
+    ]
+  },
+  {
+    "path": "optimized_asd/shortform.py",
+    "lines": 668,
+    "summary": "Long-form -> short-form (9:16) reframer.",
+    "definitions": [
+      "_smooth_scores",
+      "_smooth_bboxes",
+      "detect_scene_cuts",
+      "_crop_dims",
+      "_per_frame_intent",
+      "_segment_anchors",
+      "build_reframe_plan",
+      "_segments_from",
+      "serialize_plan",
+      "render_shortform_video",
+      "_load_artifacts",
+      "_load_or_detect_scene_cuts",
+      "parse_args",
+      "main"
+    ]
+  },
+  {
+    "path": "optimized_asd/tracking.py",
+    "lines": 79,
+    "summary": "IoU-based face tracking with bbox interpolation.",
+    "definitions": [
+      "_iou",
+      "track_faces"
+    ]
+  },
+  {
+    "path": "optimized_asd/visualize.py",
+    "lines": 156,
+    "summary": "Render the active-speaker bounding boxes on top of the source video.",
+    "definitions": [
+      "_smooth",
+      "_smooth_bbox",
+      "render_active_speaker_video"
+    ]
+  },
+  {
+    "path": "utils/get_ava_active_speaker_performance.py",
+    "lines": 236,
+    "summary": "Compute active speaker detection performance for the AVA dataset.",
+    "definitions": [
+      "compute_average_precision",
+      "load_csv",
+      "eq",
+      "merge_groundtruth_and_predictions",
+      "get_all_positives",
+      "calculate_precision_recall",
+      "run_evaluation",
+      "parse_arguments",
+      "main"
+    ]
+  },
+  {
+    "path": "utils/tools.py",
+    "lines": 180,
+    "summary": "",
+    "definitions": [
+      "init_args",
+      "preprocess_AVA",
+      "download_csv",
+      "download_videos",
+      "extract_audio",
+      "extract_audio_clips",
+      "extract_video_clips"
+    ]
+  }
+]
